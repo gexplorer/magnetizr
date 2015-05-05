@@ -6,29 +6,29 @@ angular.module('starter.services', [])
   // Some fake testing data
   var torrents = [{
     id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+    name: 'Game of Thrones S04E04 HDTV x264-KILLERS[ettv]',
+    lastText: 'Size: 351 MB   Age: 1 year   Seed: 820   Leech: 15',
+    face: 'http://icons.iconarchive.com/icons/marcus-roberto/google-play/64/Google-Play-Movies-icon.png'
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
+    name: 'Game of Thrones S04E04 720p HDTV x264-KILLERS [eztv]',
+    lastText: 'Size: 1.25 GB   Age: 1 year   Seed: 360   Leech: 18',
+    face: 'http://icons.iconarchive.com/icons/marcus-roberto/google-play/64/Google-Play-Movies-icon.png'
   },{
     id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
+    name: 'Game of Thrones S04E04 720p HDTV x264-KILLERS',
+    lastText: 'Size: 1.25 GB   Age: 1 year   Seed: 240   Leech: 3',
+    face: 'http://icons.iconarchive.com/icons/marcus-roberto/google-play/64/Google-Play-Movies-icon.png'
   }, {
     id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
+    name: 'Game of Thrones Season 4 S04E04 720p hdtv x264 MrLss',
+    lastText: 'Size: 386 MB   Age: 1 year   Seed: 121   Leech: 1',
+    face: 'http://icons.iconarchive.com/icons/marcus-roberto/google-play/64/Google-Play-Movies-icon.png'
   }, {
     id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
+    name: 'Game of Thrones S04E04 HDTV x264-KILLERS English Subtitle',
+    lastText: 'Size: 42 KB   Age: 1 year   Seed: 95   Leech: 21', 
+    face: 'https://cdn4.iconfinder.com/data/icons/gnome-desktop-icons-png/PNG/64/Gnome-Text-X-Generic-64.png'
   }];
 
   return {
