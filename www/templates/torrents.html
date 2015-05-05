@@ -1,0 +1,24 @@
+<ion-view view-title="cascade">
+  <ion-content>
+  <div class="bar bar-header item-input">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search">
+    </label>
+    <button class="button button-clear icon ion-search"></button>
+  </div>
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="torrent in torrents" type="item-text-wrap" href="#/torrents/{{torrent.id}}">
+        <img ng-src="{{torrent.face}}">
+        <h2>{{torrent.name}}</h2>
+        <p>{{torrent.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(torrent)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
