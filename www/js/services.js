@@ -1,12 +1,13 @@
-angular.module('starter.services', ['ionic'])
+angular.module('starter.services')
 
-.factory('Torrents', function($ionicPopup) {
+.factory('Torrents', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
   var torrents = [{
     id: 0,
     name: 'Game of Thrones S04E04 HDTV x264-KILLERS[ettv]',
+    magnet: 'magnet:?xt=urn:btih:B170691FE3B6AAEBA73F8EA122E85DED4AD2E1BF&dn=game+of+thrones+s04e04+hdtv+x264+killers+ettv&tr=http%3A%2F%2Ftracker.trackerfix.com%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337',
     size: '351 MB',
     age: '1 year',
     seed: 820,
@@ -15,6 +16,7 @@ angular.module('starter.services', ['ionic'])
   }, {
     id: 1,
     name: 'Game of Thrones S04E04 720p HDTV x264-KILLERS [eztv]',
+    magnet: 'magnet:?xt=urn:btih:B170691FE3B6AAEBA73F8EA122E85DED4AD2E1BF&dn=game+of+thrones+s04e04+hdtv+x264+killers+ettv&tr=http%3A%2F%2Ftracker.trackerfix.com%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337',
     size: '1.25 GB',
     age: '1 year',
     seed: 360,
@@ -23,6 +25,7 @@ angular.module('starter.services', ['ionic'])
   },{
     id: 2,
     name: 'Game of Thrones S04E04 720p HDTV x264-KILLERS',
+    magnet: 'magnet:?xt=urn:btih:B170691FE3B6AAEBA73F8EA122E85DED4AD2E1BF&dn=game+of+thrones+s04e04+hdtv+x264+killers+ettv&tr=http%3A%2F%2Ftracker.trackerfix.com%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337',
     size: '1.25 GB',
     age: '1 year',
     seed: 240,
@@ -31,6 +34,7 @@ angular.module('starter.services', ['ionic'])
   }, {
     id: 3,
     name: 'Game of Thrones Season 4 S04E04 720p hdtv x264 MrLss',
+    magnet: 'magnet:?xt=urn:btih:B170691FE3B6AAEBA73F8EA122E85DED4AD2E1BF&dn=game+of+thrones+s04e04+hdtv+x264+killers+ettv&tr=http%3A%2F%2Ftracker.trackerfix.com%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337',
     size: '386 MB',
     age: '1 year',
     seed: 121,
@@ -39,6 +43,7 @@ angular.module('starter.services', ['ionic'])
   }, {
     id: 4,
     name: 'Game of Thrones S04E04 HDTV x264-KILLERS English Subtitle',
+    magnet: 'magnet:?xt=urn:btih:B170691FE3B6AAEBA73F8EA122E85DED4AD2E1BF&dn=game+of+thrones+s04e04+hdtv+x264+killers+ettv&tr=http%3A%2F%2Ftracker.trackerfix.com%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337',
     size: '42 KB',
     age: '1 year',
     seed: 95,
@@ -71,17 +76,7 @@ angular.module('starter.services', ['ionic'])
       return result;
     },
     download: function(torrent) {
-      var confirmPopup = $ionicPopup.confirm({
-        title: 'Download',
-        template: 'Do you really want to download this magnet?'
-      });
-      confirmPopup.then(function(res) {
-        if(res) {
-          console.log('You do want');
-        } else {
-          console.log('You do not want');
-        }
-      });
+      navigator.app.loadUrl(torrent.magnet, { openExternal:true });
     }
   };
 });
