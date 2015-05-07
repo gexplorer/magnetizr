@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('cascade.controllers', [])
 
     .controller('TorrentsCtrl', function ($scope, Torrents) {
         $scope.torrents = [];

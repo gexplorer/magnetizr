@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('cascade.services', [])
 
     .factory('Torrents', function () {
 
