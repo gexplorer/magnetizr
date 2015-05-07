@@ -3,14 +3,16 @@ angular.module('starter.controllers', [])
     .controller('TorrentsCtrl', function ($scope, Torrents) {
         $scope.torrents = [];
         $scope.form = {};
-        $scope.form.query = "";
+        $scope.query = {
+            string: ""
+        };
 
         $scope.download = function (torrent) {
             Torrents.download(torrent);
         };
 
         $scope.search = function () {
-            $scope.torrents = Torrents.search($scope.form.query);
+            $scope.torrents = Torrents.search($scope.query.string);
         };
     })
 
