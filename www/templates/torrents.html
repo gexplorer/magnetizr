@@ -10,12 +10,12 @@
 
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="torrent in torrents" type="item-text-wrap" href="#/torrents/{{torrent.id}}">
-        <img ng-src="{{torrent.face}}">
+        <img ng-src="{{torrent.icon}}">
         <h2>{{torrent.name}}</h2>
-        <p>{{torrent.lastText}}</p>
+        <p>{{torrent.seed}} | {{torrent.leech}} | {{torrent.size}} | {{torrent.age}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-assertive" ng-click="remove(torrent)">
+        <ion-option-button class="button-assertive" ng-click="download(torrent)">
           <i class="icon ion-magnet"></i>
         </ion-option-button>
       </ion-item>

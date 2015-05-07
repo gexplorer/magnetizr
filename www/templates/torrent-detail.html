@@ -6,9 +6,32 @@
 -->
 <ion-view view-title="{{torrent.name}}">
   <ion-content class="padding">
-    <img ng-src="{{torrent.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{torrent.lastText}}
-    </p>
+    <div class="row">
+      <div class="col-1">
+        <img ng-src="{{torrent.icon}}" style="width: 64px; height: 64px">
+      </div>
+      <div class="col">{{torrent.name}}</div>
+    </div>
+    <div class="row">
+      <div class="col"><b>Seed:</b></div>
+      <div class="col">{{torrent.seed}}</div>
+      <div class="col"><b>Leech:</b></div>
+      <div class="col">{{torrent.leech}}</div>
+    </div>
+    <div class="row">
+      <div class="col"><b>Size:</b></div>
+      <div class="col">{{torrent.size}}</div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col"><b>Age:</b></div>
+      <div class="col">{{torrent.age}}</div>
+      <div class="col"></div>
+      <div class="col"></div>
+    </div>
+    <button class="button button-full button-assertive" ng-click="download(torrent)">
+      <i class="icon ion-magnet"></i>
+    </button>
   </ion-content>
 </ion-view>
