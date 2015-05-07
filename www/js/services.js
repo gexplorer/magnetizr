@@ -61,6 +61,15 @@ angular.module('starter.services', ['ionic'])
       }
       return null;
     },
+    search: function(query) {
+      var result = [];
+      for (var i = 0; i < torrents.length; i++) {
+        if (torrents[i].name.search(new RegExp(query, 'i')) >= 0) {
+          result.push(torrents[i]);
+        }
+      }
+      return result;
+    },
     download: function(torrent) {
       var confirmPopup = $ionicPopup.confirm({
         title: 'Download',

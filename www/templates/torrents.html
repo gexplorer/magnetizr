@@ -3,9 +3,9 @@
   <div class="bar bar-header item-input">
     <label class="item-input-wrapper">
       <i class="icon ion-ios-search placeholder-icon"></i>
-      <input type="search" placeholder="Search">
+      <input type="text" placeholder="Search" ng-model="form.query">
     </label>
-    <button class="button button-clear icon ion-search"></button>
+    <button class="button button-clear icon ion-search" ng-click="search()"></button>
   </div>
 
     <ion-list>
