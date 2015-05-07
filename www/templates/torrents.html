@@ -1,14 +1,12 @@
 <ion-view view-title="cascade">
     <ion-content>
-        <form name="form">
-            <label class="item-input">
+        <form name="form" ng-submit="search()">
+            <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
                 <input type="text" name="search" placeholder="Search" ng-model="query.string" ng-minlength="4"
                        required/>
             </label>
-            <button class="button button-full button-royal" ng-click="search()" ng-disabled="form.search.$invalid">
-                Search
-            </button>
+
         </form>
 
         <ion-list>
