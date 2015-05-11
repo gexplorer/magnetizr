@@ -8,6 +8,7 @@ angular.module('magnetizr.controllers', [])
         };
 
         $scope.download = function (torrent) {
+            window.analytics.trackEvent('/torrents', 'download', 'Download magnet', 1);
             Torrents.download(torrent);
         };
 
@@ -20,6 +21,7 @@ angular.module('magnetizr.controllers', [])
     .controller('TorrentDetailCtrl', function ($scope, $stateParams, Torrents) {
         $scope.torrent = Torrents.get($stateParams.torrentId);
         $scope.download = function (torrent) {
+            window.analytics.trackEvent('/torrent-detail', 'download', 'Download magnet', 1);
             Torrents.download(torrent);
         }
     })
