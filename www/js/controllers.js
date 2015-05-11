@@ -12,6 +12,7 @@ angular.module('magnetizr.controllers', [])
         };
 
         $scope.search = function () {
+            document.activeElement.blur();
             $scope.torrents = Torrents.search($scope.query.string);
         };
     })
