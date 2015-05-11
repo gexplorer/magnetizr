@@ -1,4 +1,4 @@
-angular.module('cascade', ['ionic', 'cascade.controllers', 'cascade.services'])
+angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services'])
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {

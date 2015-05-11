@@ -1,4 +1,4 @@
-angular.module('cascade.services', [])
+angular.module('magnetizr.services', [])
 
     .factory('Torrents', function () {
 

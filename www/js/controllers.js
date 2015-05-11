@@ -1,4 +1,4 @@
-angular.module('cascade.controllers', [])
+angular.module('magnetizr.controllers', [])
 
     .controller('TorrentsCtrl', function ($scope, Torrents) {
         $scope.torrents = [];

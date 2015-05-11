@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.cascade505590" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>cascade</name>
+<widget id="org.gexplorer.magnetizr" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>magnetizr</name>
   <description>
-        cascade: A torrent searching app
+        magnetizr: A magnet searching app
     </description>
   <author email="gexplorer8@gmail.com" href="http://gexplorer.org/">
       Eder Elorriaga
