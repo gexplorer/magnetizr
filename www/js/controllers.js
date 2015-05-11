@@ -21,4 +21,14 @@ angular.module('cascade.controllers', [])
         $scope.download = function (torrent) {
             Torrents.download(torrent);
         }
+    })
+
+    .directive('categoryIcon', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                category: '='
+            },
+            templateUrl: 'templates/category-icon.html'
+        };
     });
