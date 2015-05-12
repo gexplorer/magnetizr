@@ -16,7 +16,11 @@
             <ion-item class="item" ng-repeat="torrent in torrents"
                       href="#/torrents/{{torrent.id}}">
                 <div class="row">
-                    <category-icon category="torrent.category"></category-icon>
+                    <div class="col1">
+                        <div class="button button-{{torrent.color}}">
+                            <i class="ion ion-{{torrent.icon}}"></i>
+                        </div>
+                    </div>
 
                     <div class="col">
                         <h2>{{torrent.name}}</h2>

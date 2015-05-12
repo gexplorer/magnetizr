@@ -17,19 +17,14 @@ angular.module('magnetizr.controllers', [])
         };
     })
 
-    .controller('TorrentDetailCtrl', function ($scope, $stateParams, Torrents) {
+    .controller('TorrentDetailCtrl', function ($scope, $stateParams, Torrents, $ionicHistory) {
         $scope.torrent = Torrents.get($stateParams.torrentId);
+
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+        };
+
         $scope.download = function (torrent) {
             Torrents.download(torrent);
         }
-    })
-
-    .directive('categoryIcon', function () {
-        return {
-            restrict: 'E',
-            scope: {
-                category: '='
-            },
-            templateUrl: 'templates/category-icon.html'
-        };
     });
