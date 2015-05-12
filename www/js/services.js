@@ -2,6 +2,60 @@ angular.module('magnetizr.services', [])
 
     .factory('Torrents', function () {
 
+        function getColor(category) {
+            var color = "light";
+            switch (category) {
+                case "tv":
+                    color = "positive";
+                    break;
+                case "movie":
+                    color = "calm";
+                    break;
+                case "book":
+                    color = "balanced";
+                    break;
+                case "music":
+                    color = "royal";
+                    break;
+                case "game":
+                    color = "assertive";
+                    break;
+                case "app":
+                    color = "dark";
+                    break;
+                case "xxx":
+                    color = "stable";
+            }
+            return color;
+        }
+
+        function getIcon(category) {
+            var color = "paperclip";
+            switch (category) {
+                case "tv":
+                    color = "monitor";
+                    break;
+                case "movie":
+                    color = "ios-videocam";
+                    break;
+                case "book":
+                    color = "ios-book";
+                    break;
+                case "music":
+                    color = "music-note";
+                    break;
+                case "game":
+                    color = "ios-game-controller-b";
+                    break;
+                case "app":
+                    color = "gear-a";
+                    break;
+                case "xxx":
+                    color = "alert-circled";
+            }
+            return color;
+        }
+
         var torrents = [{
             id: 0,
             name: 'Game of Thrones S04E04 HDTV x264-KILLERS[ettv]',
@@ -10,7 +64,9 @@ angular.module('magnetizr.services', [])
             age: '1 year',
             seed: 820,
             leech: 15,
-            category: 'tv'
+            category: 'tv',
+            color: getColor('tv'),
+            icon: getIcon('tv')
         }, {
             id: 1,
             name: 'Game of Thrones S04E04 720p HDTV x264-KILLERS [eztv]',
@@ -19,7 +75,9 @@ angular.module('magnetizr.services', [])
             age: '1 year',
             seed: 360,
             leech: 18,
-            category: 'tv'
+            category: 'tv',
+            color: getColor('tv'),
+            icon: getIcon('tv')
         }, {
             id: 2,
             name: 'Game of Thrones - The Movie',
@@ -28,7 +86,9 @@ angular.module('magnetizr.services', [])
             age: '1 day',
             seed: 905,
             leech: 210,
-            category: 'movie'
+            category: 'movie',
+            color: getColor('movie'),
+            icon: getIcon('movie')
         }, {
             id: 3,
             name: 'Game of Thrones - Soundtrak',
@@ -37,7 +97,9 @@ angular.module('magnetizr.services', [])
             age: '1 year',
             seed: 240,
             leech: 3,
-            category: 'music'
+            category: 'music',
+            color: getColor('music'),
+            icon: getIcon('music')
         }, {
             id: 4,
             name: 'Game of Thrones - Book 1',
@@ -46,7 +108,9 @@ angular.module('magnetizr.services', [])
             age: '1 year',
             seed: 95,
             leech: 29,
-            category: 'book'
+            category: 'book',
+            color: getColor('book'),
+            icon: getIcon('book')
         }, {
             id: 5,
             name: 'Game of Thrones - NDS Game',
@@ -55,7 +119,9 @@ angular.module('magnetizr.services', [])
             age: '1 year',
             seed: 21,
             leech: 15,
-            category: 'game'
+            category: 'game',
+            color: getColor('game'),
+            icon: getIcon('game')
         }, {
             id: 6,
             name: 'Game of Thrones Companion APP',
@@ -64,7 +130,9 @@ angular.module('magnetizr.services', [])
             age: '1 year',
             seed: 45,
             leech: 42,
-            category: 'app'
+            category: 'app',
+            color: getColor('app'),
+            icon: getIcon('app')
         }, {
             id: 7,
             name: 'Game of Thrones - XXX Parody',
@@ -73,7 +141,9 @@ angular.module('magnetizr.services', [])
             age: '1 year',
             seed: 866,
             leech: 123,
-            category: 'xxx'
+            category: 'xxx',
+            color: getColor('xxx'),
+            icon: getIcon('xxx')
         }];
 
         return {

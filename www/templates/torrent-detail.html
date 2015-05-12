@@ -1,9 +1,13 @@
-<ion-view view-title="{{torrent.name}}">
+<ion-view view-title="{{torrent.name}}" hide-nav-bar="true">
+    <ion-header-bar class="bar bar-{{torrent.color}}">
+        <button class="button button-clear" ng-click="goBack()">
+            <i class="ion-chevron-left"></i>
+            <i class="ion ion-{{torrent.icon}}"></i>
+        </button>
+        <h1 class="title">{{torrent.category}}</h1>
+    </ion-header-bar>
     <ion-content class="padding">
-        <div class="row">
-            <category-icon category="torrent.category "></category-icon>
-            <div class="col">{{torrent.name}}</div>
-        </div>
+        <h4>{{torrent.name}}</h4>
         <div class="row">
             <div class="col"><b>Seed:</b></div>
             <div class="col">{{torrent.seed}}</div>
