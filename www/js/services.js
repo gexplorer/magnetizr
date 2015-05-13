@@ -88,6 +88,24 @@ angular.module('magnetizr.services', [])
             return color;
         }
 
+        function getFormattedSize(size) {
+            var numberOfDivisions = 0;
+            for (numberOfDivisions = 0; size >= 1024; numberOfDivisions++) {
+                size = size / 1024;
+            }
+
+            switch (numberOfDivisions) {
+                case 0:
+                    return (Math.round(size * 100) / 100) + " B";
+                case 1:
+                    return (Math.round(size * 100) / 100) + " KB";
+                case 2:
+                    return (Math.round(size * 100) / 100) + " MB";
+                case 3:
+                    return (Math.round(size * 100) / 100) + " GB";
+            }
+        }
+
         var torrents = [];
 
         return {
@@ -119,7 +137,7 @@ angular.module('magnetizr.services', [])
                                 id: torrent.torrent_hash,
                                 name: torrent.torrent_title,
                                 magnet: torrent.magnet_uri,
-                                size: torrent.size,
+                                size: getFormattedSize(torrent.size),
                                 age: torrent.upload_date,
                                 seed: torrent.seeds,
                                 leech: torrent.leeches,
