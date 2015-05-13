@@ -90,7 +90,7 @@ angular.module('magnetizr.services', [])
 
         function getFormattedSize(size) {
             var numberOfDivisions = 0;
-            for (numberOfDivisions = 0; size >= 1024; numberOfDivisions++) {
+            for (numberOfDivisions = 0; (size >= 1024) && (numberOfDivisions < 4); numberOfDivisions++) {
                 size = size / 1024;
             }
 
@@ -129,6 +129,7 @@ angular.module('magnetizr.services', [])
                         torrents.length = 0;
 
                         var torrentItems = data.torrents;
+
                         console.log(torrentItems);
 
                         for (var i = 0; i < torrentItems.length; i++) {
@@ -146,9 +147,6 @@ angular.module('magnetizr.services', [])
                                 icon: getIcon(torrent.torrent_category)
                             });
                         }
-
-                        console.log("Results:");
-                        console.log(torrents);
 
                         return torrents;
 
