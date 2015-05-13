@@ -1,6 +1,6 @@
 angular.module('magnetizr.controllers', [])
 
-    .controller('TorrentsCtrl', function ($scope, Torrents) {
+    .controller('TorrentsCtrl', function ($scope, Torrents, GoogleAnalytics) {
         $scope.torrents = [];
         $scope.form = {};
         $scope.query = {
@@ -8,20 +8,27 @@ angular.module('magnetizr.controllers', [])
         };
 
         $scope.download = function (torrent) {
-            window.analytics.trackEvent('/torrents', 'download', 'Download magnet', 1);
+            GoogleAnalytics.track('send', 'event', {
+                'eventCategory': torrent.category,
+                'eventAction': 'download'
+            });
             Torrents.download(torrent);
         };
 
         $scope.search = function () {
             document.activeElement.blur();
+            GoogleAnalytics.track('send', 'pageview', {'page': '/search?q=' + $scope.query.string});
             $scope.torrents = Torrents.search($scope.query.string);
         };
     })
 
-    .controller('TorrentDetailCtrl', function ($scope, $stateParams, Torrents) {
-        $scope.torrent = Torrents.get($stateParams.torrentId);
+    .controller('TorrentDetailCtrl', function ($scope, $state, Torrents, GoogleAnalytics) {
+        $scope.torrent = Torrents.get($state.params.torrentId);
         $scope.download = function (torrent) {
-            window.analytics.trackEvent('/torrent-detail', 'download', 'Download magnet', 1);
+            GoogleAnalytics.track('send', 'event', {
+                'eventCategory': $scope.torrent.category,
+                'eventAction': 'download'
+            });
             Torrents.download(torrent);
         }
     })

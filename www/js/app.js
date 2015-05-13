@@ -1,6 +1,6 @@
 angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services'])
 
-    .run(function ($ionicPlatform, $rootScope) {
+    .run(function ($ionicPlatform, $rootScope, GoogleAnalytics) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -15,7 +15,7 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
             $rootScope.$on('$stateChangeStart',
                 function (event, toState, toParams, fromState, fromParams) {
                     console.log("* Changing route: "+ toState.name);
-                    window.analytics.trackView(toState.name);
+                    GoogleAnalytics.track('send', 'pageview', {'page': toState.name});
                 });
 
         });
