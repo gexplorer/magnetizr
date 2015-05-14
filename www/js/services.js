@@ -34,6 +34,8 @@ angular.module('magnetizr.services', [])
 
     .factory('Torrents', function ($http) {
 
+        var torrents = [];
+
         function getColor(category) {
             var color = "light";
             switch (category) {
@@ -106,7 +108,67 @@ angular.module('magnetizr.services', [])
             }
         }
 
-        var torrents = [];
+        function getImdbUrl(imdbId) {
+            return "http://www.imdb.com/title/" + imdbId;
+        }
+
+        var getAgeFromTo = {
+
+            inDays: function(dateFrom, dateTo) {
+                var timeTo = dateTo.getTime();
+                var timeFrom = dateFrom.getTime();
+
+                return parseInt((timeTo-timeFrom)/(24*3600*1000));
+            },
+
+            inWeeks: function(dateFrom, dateTo) {
+                var timeTo = dateTo.getTime();
+                var timeFrom = dateFrom.getTime();
+
+                return parseInt((timeTo-timeFrom)/(24*3600*1000*7));
+            },
+
+            inMonths: function(dateFrom, dateTo) {
+                var yearFrom = dateFrom.getFullYear();
+                var yearTo = dateTo.getFullYear();
+                var dateFrom = dateFrom.getMonth();
+                var dateTo = dateTo.getMonth();
+
+                return (dateTo+12*yearTo)-(dateFrom+12*yearFrom);
+            },
+
+            inYears: function(dateFrom, dateTo) {
+                return dateTo.getFullYear() - dateFrom.getFullYear();
+            }
+        };
+
+        function getAge(from) {
+            var years = getAgeFromTo.inYears(new Date(from), new Date());
+            if (years > 0) {
+                return getFormattedAge(years, "year");
+            }
+
+            var months = getAgeFromTo.inMonths(new Date(from), new Date());
+            if (months > 0) {
+                return getFormattedAge(months, "month");
+            }
+
+            var weeks = getAgeFromTo.inWeeks(new Date(from), new Date());
+            if (weeks > 0) {
+                return getFormattedAge(weeks, "week");
+            }
+
+            var days = getAgeFromTo.inDays(new Date(from), new Date());
+            return getFormattedAge(days, "day");
+        }
+
+        function getFormattedAge(number, unitName) {
+            if (number > 1) {
+                unitName += "s";
+            }
+            return number + " " + unitName;
+        }
+
 
         return {
             all: function () {
@@ -130,8 +192,6 @@ angular.module('magnetizr.services', [])
 
                         var torrentItems = data.torrents;
 
-                        console.log(torrentItems);
-
                         for (var i = 0; i < torrentItems.length; i++) {
                             var torrent = torrentItems[i];
                             torrents.push({
@@ -139,12 +199,13 @@ angular.module('magnetizr.services', [])
                                 name: torrent.torrent_title,
                                 magnet: torrent.magnet_uri,
                                 size: getFormattedSize(torrent.size),
-                                age: torrent.upload_date,
+                                age: getAge(torrent.upload_date),
                                 seed: torrent.seeds,
                                 leech: torrent.leeches,
                                 category: torrent.torrent_category,
                                 color: getColor(torrent.torrent_category),
-                                icon: getIcon(torrent.torrent_category)
+                                icon: getIcon(torrent.torrent_category),
+                                imdb: getImdbUrl(torrent.imdbid)
                             });
                         }
 
