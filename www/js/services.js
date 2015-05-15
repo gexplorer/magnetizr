@@ -45,6 +45,9 @@ angular.module('magnetizr.services', [])
                 case "Movies":
                     color = "calm";
                     break;
+                case "Anime":
+                    color = "dark";
+                    break;
                 case "Books":
                     color = "balanced";
                     break;
@@ -55,7 +58,7 @@ angular.module('magnetizr.services', [])
                     color = "assertive";
                     break;
                 case "Applications":
-                    color = "dark";
+                    color = "energized";
                     break;
                 case "XXX":
                     color = "stable";
@@ -64,13 +67,16 @@ angular.module('magnetizr.services', [])
         }
 
         function getIcon(category) {
-            var color = "paperclip";
+            var color = "android-attach";
             switch (category) {
                 case "TV":
-                    color = "monitor";
+                    color = "android-desktop";
                     break;
                 case "Movies":
-                    color = "ios-videocam";
+                    color = "android-film";
+                    break;
+                case "Anime":
+                    color = "android-create";
                     break;
                 case "Books":
                     color = "ios-book";
@@ -82,10 +88,10 @@ angular.module('magnetizr.services', [])
                     color = "ios-game-controller-b";
                     break;
                 case "Applications":
-                    color = "gear-a";
+                    color = "android-settings";
                     break;
                 case "XXX":
-                    color = "alert-circled";
+                    color = "android-alert";
             }
             return color;
         }
