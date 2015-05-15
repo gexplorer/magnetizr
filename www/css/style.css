@@ -1,3 +1,5 @@
-.bar-custom{
-    background-color: #607d8b !important;
+.button-round {
+    border-radius: 50% !important;
+    font-size: 2em !important;
+    padding-top: 2px !important;
 }
