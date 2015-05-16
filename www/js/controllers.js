@@ -3,6 +3,7 @@ angular.module('magnetizr.controllers', [])
     .controller('TorrentsCtrl', function ($scope, Torrents, GoogleAnalytics) {
         $scope.torrents = [];
         $scope.form = {};
+        $scope.message = "";
         $scope.query = {
             string: ""
         };
@@ -18,7 +19,17 @@ angular.module('magnetizr.controllers', [])
         $scope.search = function () {
             document.activeElement.blur();
             GoogleAnalytics.track('send', 'pageview', {'page': '/search?q=' + $scope.query.string});
-            $scope.torrents = Torrents.search($scope.query.string);
+            var success = function (torrents) {
+                console.log("* Contr success");
+                $scope.message = "";
+                $scope.torrents = torrents;
+            };
+            var error = function(payload){
+                console.log("* Contr error");
+                $scope.message = payload.data.message;
+                $scope.torrents = [];
+            };
+            Torrents.search($scope.query.string).then(success, error);
         };
     })
 
