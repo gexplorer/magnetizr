@@ -34,6 +34,8 @@ angular.module('magnetizr.services', [])
 
     .factory('Torrents', function ($http) {
 
+        var torrents = [];
+
         function getColor(category) {
             var color = "light";
             switch (category) {
@@ -175,12 +177,6 @@ angular.module('magnetizr.services', [])
 
 
         return {
-            all: function () {
-                return torrents;
-            },
-            remove: function (torrent) {
-                torrents.splice(torrents.indexOf(torrent), 1);
-            },
             get: function (torrentId) {
                 for (var i = 0; i < torrents.length; i++) {
                     if (torrents[i].id === torrentId) {
@@ -191,7 +187,7 @@ angular.module('magnetizr.services', [])
             },
             search: function (query) {
                 var success = function (payload) {
-                    var torrents = [];
+                    torrents = [];
                     var torrentItems = payload.data.torrents;
 
                     for (var i = 0; i < torrentItems.length; i++) {
