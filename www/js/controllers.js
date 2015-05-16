@@ -54,6 +54,14 @@ angular.module('magnetizr.controllers', [])
                 'eventCategory': $scope.torrent.category,
                 'eventAction': 'download'
             });
-            Torrents.download(torrent);
+            navigator.app.loadUrl(torrent.magnet, {openExternal: true});
+        };
+
+        $scope.imdb = function (torrent) {
+            GoogleAnalytics.track('send', 'event', {
+                'eventCategory': $scope.torrent.category,
+                'eventAction': 'imdb'
+            });
+            navigator.app.loadUrl("http://www.imdb.com/title/" + torrent.imdb, {openExternal: true});
         }
     });

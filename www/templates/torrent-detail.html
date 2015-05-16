@@ -54,14 +54,14 @@
                 </div>
                 <br/>
 
-                <!--div class="row">
+                <div class="row" ng-show="torrent.imdb">
                     <div class="col">
-                        <a href="#" class="subdued">
+                        <a href="#" class="subdued" ng-click="imdb(torrent)">
                             <i class="icon ion-information-circled"></i>
                             Open in IMDB
                         </a>
                     </div>
-                </div-->
+                </div>
             </div>
 
             <a class="item item-icon-left assertive" href="#" ng-click="download(torrent)">

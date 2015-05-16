@@ -114,10 +114,6 @@ angular.module('magnetizr.services', [])
             }
         }
 
-        function getImdbUrl(imdbId) {
-            return "http://www.imdb.com/title/" + imdbId;
-        }
-
         var getAgeFromTo = {
 
             inDays: function (dateFrom, dateTo) {
@@ -203,7 +199,7 @@ angular.module('magnetizr.services', [])
                             category: torrent.torrent_category,
                             color: getColor(torrent.torrent_category),
                             icon: getIcon(torrent.torrent_category),
-                            imdb: getImdbUrl(torrent.imdbid)
+                            imdb: torrent.imdbid
                         });
                     }
                     return torrents;
