@@ -1,7 +1,7 @@
 angular.module('magnetizr.services', [])
 
     .factory('GoogleAnalytics', function () {
-        if(!window.ga) {
+        if (!window.ga) {
             (function (i, s, o, g, r, a, m) {
                 i['GoogleAnalyticsObject'] = r;
                 i[r] = i[r] || function () {
@@ -33,8 +33,6 @@ angular.module('magnetizr.services', [])
     })
 
     .factory('Torrents', function ($http) {
-
-        var torrents = [];
 
         function getColor(category) {
             var color = "light";
@@ -120,30 +118,30 @@ angular.module('magnetizr.services', [])
 
         var getAgeFromTo = {
 
-            inDays: function(dateFrom, dateTo) {
+            inDays: function (dateFrom, dateTo) {
                 var timeTo = dateTo.getTime();
                 var timeFrom = dateFrom.getTime();
 
-                return parseInt((timeTo-timeFrom)/(24*3600*1000));
+                return parseInt((timeTo - timeFrom) / (24 * 3600 * 1000));
             },
 
-            inWeeks: function(dateFrom, dateTo) {
+            inWeeks: function (dateFrom, dateTo) {
                 var timeTo = dateTo.getTime();
                 var timeFrom = dateFrom.getTime();
 
-                return parseInt((timeTo-timeFrom)/(24*3600*1000*7));
+                return parseInt((timeTo - timeFrom) / (24 * 3600 * 1000 * 7));
             },
 
-            inMonths: function(dateFrom, dateTo) {
+            inMonths: function (dateFrom, dateTo) {
                 var yearFrom = dateFrom.getFullYear();
                 var yearTo = dateTo.getFullYear();
                 var dateFrom = dateFrom.getMonth();
                 var dateTo = dateTo.getMonth();
 
-                return (dateTo+12*yearTo)-(dateFrom+12*yearFrom);
+                return (dateTo + 12 * yearTo) - (dateFrom + 12 * yearFrom);
             },
 
-            inYears: function(dateFrom, dateTo) {
+            inYears: function (dateFrom, dateTo) {
                 return dateTo.getFullYear() - dateFrom.getFullYear();
             }
         };
@@ -192,40 +190,35 @@ angular.module('magnetizr.services', [])
                 return null;
             },
             search: function (query) {
-                $http.get('https://getstrike.net/api/v2/torrents/search/?phrase=' + query).
-                    success(function(data, status, headers, config) {
-                        torrents.length = 0;
+                var success = function (payload) {
+                    var torrents = [];
+                    var torrentItems = payload.data.torrents;
 
-                        var torrentItems = data.torrents;
+                    for (var i = 0; i < torrentItems.length; i++) {
+                        var torrent = torrentItems[i];
+                        torrents.push({
+                            id: torrent.torrent_hash,
+                            name: torrent.torrent_title,
+                            magnet: torrent.magnet_uri,
+                            size: getFormattedSize(torrent.size),
+                            age: getAge(torrent.upload_date),
+                            seed: torrent.seeds,
+                            leech: torrent.leeches,
+                            category: torrent.torrent_category,
+                            color: getColor(torrent.torrent_category),
+                            icon: getIcon(torrent.torrent_category),
+                            imdb: getImdbUrl(torrent.imdbid)
+                        });
+                    }
+                    return torrents;
+                };
 
-                        for (var i = 0; i < torrentItems.length; i++) {
-                            var torrent = torrentItems[i];
-                            torrents.push({
-                                id: torrent.torrent_hash,
-                                name: torrent.torrent_title,
-                                magnet: torrent.magnet_uri,
-                                size: getFormattedSize(torrent.size),
-                                age: getAge(torrent.upload_date),
-                                seed: torrent.seeds,
-                                leech: torrent.leeches,
-                                category: torrent.torrent_category,
-                                color: getColor(torrent.torrent_category),
-                                icon: getIcon(torrent.torrent_category),
-                                imdb: getImdbUrl(torrent.imdbid)
-                            });
-                        }
-
-                        return torrents;
-
-                    }).
-                    error(function(data, status, headers, config) {
-                        alert("Something went wrong");
-                    });
-
-                return torrents;
+                return $http.get('https://getstrike.net/api/v2/torrents/search/?phrase=' + query).then(success);
             },
             download: function (torrent) {
                 navigator.app.loadUrl(torrent.magnet, {openExternal: true});
             }
-        };
-    });
+        }
+            ;
+    })
+;
