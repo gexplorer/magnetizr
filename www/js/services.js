@@ -219,7 +219,8 @@ angular.module('magnetizr.services', [])
 
                     }).
                     error(function(data, status, headers, config) {
-                        alert("Something went wrong");
+                        torrents.length = 0;
+                        return []
                     });
 
                 return torrents;

@@ -13,6 +13,9 @@
         </form>
 
         <ion-list>
+            <ion-item class="item item-divider" ng-class="torrents.length == 0?'':'hide'">
+                <p>No torrents found</p>
+            </ion-item>
             <ion-item class="item" ng-repeat="torrent in torrents"
                       href="#/torrents/{{torrent.id}}">
                 <div class="row">
