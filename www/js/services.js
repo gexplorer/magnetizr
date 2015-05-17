@@ -114,6 +114,14 @@ angular.module('magnetizr.services', [])
             }
         }
 
+        function getFormattedPeople(people){
+            if(people < 1000){
+                return people;
+            }else{
+                return Math.round(people/1000) + "k"
+            }
+        }
+
         var getAgeFromTo = {
 
             inDays: function (dateFrom, dateTo) {
@@ -194,8 +202,8 @@ angular.module('magnetizr.services', [])
                             magnet: torrent.magnet_uri,
                             size: getFormattedSize(torrent.size),
                             age: getAge(torrent.upload_date),
-                            seed: torrent.seeds,
-                            leech: torrent.leeches,
+                            seed: getFormattedPeople(torrent.seeds),
+                            leech: getFormattedPeople(torrent.leeches),
                             category: torrent.torrent_category,
                             color: getColor(torrent.torrent_category),
                             icon: getIcon(torrent.torrent_category),
