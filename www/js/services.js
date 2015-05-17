@@ -104,11 +104,11 @@ angular.module('magnetizr.services', [])
 
             switch (numberOfDivisions) {
                 case 0:
-                    return (Math.round(size * 100) / 100) + " B";
+                    return Math.round(Math.round(size * 100) / 100) + " B";
                 case 1:
-                    return (Math.round(size * 100) / 100) + " KB";
+                    return Math.round(Math.round(size * 100) / 100) + " KB";
                 case 2:
-                    return (Math.round(size * 100) / 100) + " MB";
+                    return Math.round(Math.round(size * 100) / 100) + " MB";
                 case 3:
                     return (Math.round(size * 100) / 100) + " GB";
             }
