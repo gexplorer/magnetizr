@@ -91,7 +91,7 @@ angular.module('magnetizr.services', [])
                     color = "android-settings";
                     break;
                 case "XXX":
-                    color = "android-alert";
+                    color = "android-close";
             }
             return color;
         }
