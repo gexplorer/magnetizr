@@ -104,13 +104,21 @@ angular.module('magnetizr.services', [])
 
             switch (numberOfDivisions) {
                 case 0:
-                    return (Math.round(size * 100) / 100) + " B";
+                    return Math.round(Math.round(size * 100) / 100) + " B";
                 case 1:
-                    return (Math.round(size * 100) / 100) + " KB";
+                    return Math.round(Math.round(size * 100) / 100) + " KB";
                 case 2:
-                    return (Math.round(size * 100) / 100) + " MB";
+                    return Math.round(Math.round(size * 100) / 100) + " MB";
                 case 3:
                     return (Math.round(size * 100) / 100) + " GB";
+            }
+        }
+
+        function getFormattedPeople(people){
+            if(people < 1000){
+                return people;
+            }else{
+                return Math.round(people/1000) + "k"
             }
         }
 
@@ -194,8 +202,8 @@ angular.module('magnetizr.services', [])
                             magnet: torrent.magnet_uri,
                             size: getFormattedSize(torrent.size),
                             age: getAge(torrent.upload_date),
-                            seed: torrent.seeds,
-                            leech: torrent.leeches,
+                            seed: getFormattedPeople(torrent.seeds),
+                            leech: getFormattedPeople(torrent.leeches),
                             category: torrent.torrent_category,
                             color: getColor(torrent.torrent_category),
                             icon: getIcon(torrent.torrent_category),

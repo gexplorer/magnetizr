@@ -22,47 +22,36 @@
                 </div>
             </div>
 
-            <div class="item item-divider">
-                <div class="row  h4">
-                    <div class="col">
-                        <b>Seeds</b>
 
-                        <div>{{torrent.seed}}</div>
-                    </div>
-
-                    <div class="col">
-                        <b>Leeches</b>
-
-                        <div>{{torrent.leech}}</div>
-                    </div>
-                </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-android-arrow-dropup-circle"></i>
+                Seeds
+                <span class="badge badge-positive">{{torrent.seed}}</span>
             </div>
 
-            <div class="item item-body">
-                <div class="row ">
-                    <div class="col">
-                        <b>Size</b>
-
-                        <div>{{torrent.size}}</div>
-                    </div>
-
-                    <div class="col">
-                        <b>Age</b>
-
-                        <div>{{torrent.age}}</div>
-                    </div>
-                </div>
-                <br/>
-
-                <div class="row" ng-show="torrent.imdb">
-                    <div class="col">
-                        <a href="#" class="subdued" ng-click="imdb(torrent)">
-                            <i class="icon ion-information-circled"></i>
-                            Open in IMDB
-                        </a>
-                    </div>
-                </div>
+            <div class="item item-icon-left">
+                <i class="icon ion-android-arrow-dropdown-circle"></i>
+                Leeches
+                <span class="badge badge-assertive">{{torrent.leech}}</span>
             </div>
+
+            <div class="item item-icon-left">
+                <i class="icon ion-document"></i>
+                Size
+                <span class="badge">{{torrent.size}}</span>
+            </div>
+
+            <div class="item item-icon-left">
+                <i class="icon ion-calendar"></i>
+                Age
+                <span class="badge">{{torrent.age}}</span>
+            </div>
+
+            <a class="item item-icon-left" href="#" ng-click="imdb(torrent)" ng-show="torrent.imdb">
+                <i class="icon ion-android-open"></i>
+                Open in IMDB
+
+            </a>
 
             <a class="item item-icon-left assertive" href="#" ng-click="download(torrent)">
                 <i class="icon ion-magnet"></i>
