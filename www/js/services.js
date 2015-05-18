@@ -46,7 +46,7 @@ angular.module('magnetizr.services', [])
                     color = "calm";
                     break;
                 case "Anime":
-                    color = "dark";
+                    color = "energized";
                     break;
                 case "Books":
                     color = "balanced";
@@ -58,10 +58,10 @@ angular.module('magnetizr.services', [])
                     color = "assertive";
                     break;
                 case "Applications":
-                    color = "energized";
+                    color = "stable";
                     break;
                 case "XXX":
-                    color = "stable";
+                    color = "light";
             }
             return color;
         }
