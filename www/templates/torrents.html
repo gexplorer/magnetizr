@@ -7,13 +7,12 @@
         <form name="form" ng-submit="search()">
             <label class="item item-input">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" name="search" placeholder="Search" ng-model="query.string" ng-minlength="4"
-                       required/>
+                <input type="text" name="search" placeholder="Search" ng-model="query.string" required/>
             </label>
         </form>
 
         <ion-list>
-            <ion-item class="item item-divider" ng-bind="message" ng-show="message"></ion-item>
+            <ion-item class="item item-divider item-text-wrap" ng-bind="message" ng-show="message"></ion-item>
 
             <ion-item class="item" ng-repeat="torrent in torrents"
                       href="#/torrents/{{torrent.id}}">
