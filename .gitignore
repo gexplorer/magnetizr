@@ -7,3 +7,5 @@ plugins/
 /.idea/
 /.sass-cache/
 *.iml
+/.gradle/
+*.keystore
