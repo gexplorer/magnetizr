@@ -1,4 +1,4 @@
-angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services'])
+angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services', 'magnetizr.directives'])
 
     .run(function ($ionicPlatform, $rootScope, GoogleAnalytics) {
         $ionicPlatform.ready(function () {

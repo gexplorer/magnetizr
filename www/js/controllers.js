@@ -1,6 +1,6 @@
 angular.module('magnetizr.controllers', [])
 
-    .controller('TorrentsCtrl', function ($scope, Torrents, GoogleAnalytics, $ionicLoading) {
+    .controller('TorrentsCtrl', function ($scope, Torrents, GoogleAnalytics, $ionicLoading, focus) {
         $scope.torrents = [];
         $scope.form = {};
         $scope.message = "";
@@ -14,6 +14,11 @@ angular.module('magnetizr.controllers', [])
                 'eventAction': 'download'
             });
             Torrents.download(torrent);
+        };
+
+        $scope.clear = function (a, b, c) {
+            $scope.query.string = "";
+            focus("search");
         };
 
         $scope.search = function () {
@@ -33,9 +38,9 @@ angular.module('magnetizr.controllers', [])
                 $ionicLoading.hide();
             };
             var error = function (response) {
-                if(response.status === 0){
+                if (response.status === 0) {
                     $scope.message = "Oops! Something went wrong. Please try again later.";
-                }else {
+                } else {
                     $scope.message = response.data.message;
                 }
                 $scope.torrents = [];

@@ -4,14 +4,18 @@
     </ion-nav-title>
 
     <ion-content>
-        <form name="form" ng-submit="search()">
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" name="search" placeholder="Search" ng-model="query.string" required/>
-            </label>
-        </form>
-
         <ion-list>
+            <div class="item item-icon-right no-padding">
+                <form name="form" ng-submit="search()">
+                    <label class="item-input">
+                        <i class="ion ion-search placeholder-icon"></i>
+                        <input type="text" id="search" name="search" placeholder="Search" ng-model="query.string"
+                               ng-submit="search()" focus-on="search" required/>
+                    </label>
+                </form>
+                <i class="icon ion-android-close" ng-click="clear()" ng-show="query.string"></i>
+            </div>
+
             <ion-item class="item item-divider item-text-wrap" ng-bind="message" ng-show="message"></ion-item>
 
             <ion-item class="item" ng-repeat="torrent in torrents"
@@ -26,7 +30,10 @@
                     <div class="col">
                         <h2>{{torrent.name}}</h2>
 
-                        <p><i class="ion ion-android-arrow-dropup-circle"></i> {{torrent.seed}} <i class="ion ion-android-arrow-dropdown-circle"></i> {{torrent.leech}} <i class="ion ion-document"></i> {{torrent.size}} <i class="ion ion-calendar"></i> {{torrent.age}}</p>
+                        <p><i class="ion ion-android-arrow-dropup-circle"></i> {{torrent.seed}} <i
+                                class="ion ion-android-arrow-dropdown-circle"></i> {{torrent.leech}} <i
+                                class="ion ion-document"></i> {{torrent.size}} <i class="ion ion-calendar"></i>
+                            {{torrent.age}}</p>
                     </div>
                 </div>
 

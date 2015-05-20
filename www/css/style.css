@@ -3,3 +3,7 @@
     font-size: 2em !important;
     padding-top: 2px !important;
 }
+
+.no-padding {
+    padding: 0px !important;
+}
