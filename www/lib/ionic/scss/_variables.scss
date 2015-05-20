@@ -16,8 +16,8 @@ $dark:                            #444 !default;
 // Base
 // -------------------------------
 
-$font-family-sans-serif:          "Roboto", sans-serif !default;
-$font-family-light-sans-serif:    "Roboto-Light", sans-serif-light !default;
+$font-family-sans-serif:          $roboto-font-family, sans-serif !default;
+$font-family-light-sans-serif:    $roboto-font-family-light, sans-serif-light !default;
 $font-family-serif:               serif !default;
 $font-family-monospace:           monospace !default;
 
