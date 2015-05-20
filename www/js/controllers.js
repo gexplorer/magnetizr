@@ -28,14 +28,16 @@ angular.module('magnetizr.controllers', [])
             GoogleAnalytics.track('send', 'pageview', {'page': '/search?q=' + $scope.query.string});
 
             var success = function (torrents) {
-                console.log("* Contr success");
                 $scope.message = "";
                 $scope.torrents = torrents;
                 $ionicLoading.hide();
             };
-            var error = function (payload) {
-                console.log("* Contr error");
-                $scope.message = payload.data.message;
+            var error = function (response) {
+                if(response.status === 0){
+                    $scope.message = "Oops! Something went wrong. Please try again later.";
+                }else {
+                    $scope.message = response.data.message;
+                }
                 $scope.torrents = [];
                 $ionicLoading.hide();
             };
