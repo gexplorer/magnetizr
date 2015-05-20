@@ -21,6 +21,7 @@ angular.module('magnetizr.controllers', [])
 
             $ionicLoading.show({
                 noBackdrop: true,
+                delay: 500,
                 template: '<ion-spinner></ion-spinner>'
             });
 
@@ -32,7 +33,7 @@ angular.module('magnetizr.controllers', [])
                 $scope.torrents = torrents;
                 $ionicLoading.hide();
             };
-            var error = function(payload){
+            var error = function (payload) {
                 console.log("* Contr error");
                 $scope.message = payload.data.message;
                 $scope.torrents = [];
