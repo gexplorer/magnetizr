@@ -1,4 +1,4 @@
-angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services', 'magnetizr.directives'])
+angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services', 'magnetizr.directives', 'pascalprecht.translate'])
 
     .run(function ($ionicPlatform, $rootScope, GoogleAnalytics) {
         $ionicPlatform.ready(function () {
@@ -21,7 +21,7 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
 
         $stateProvider
 
@@ -38,5 +38,16 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
             });
 
         $urlRouterProvider.otherwise('/torrents');
+
+        $translateProvider.translations('en', {
+            hello_message: "Howdy",
+            goodbye_message: "Goodbye"
+        });
+        $translateProvider.translations('es', {
+            hello_message: "Hola",
+            goodbye_message: "Adios"
+        });
+        $translateProvider.preferredLanguage("en");
+        $translateProvider.fallbackLanguage("en");
 
     });
