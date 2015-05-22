@@ -1,6 +1,6 @@
 angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services', 'magnetizr.directives', 'pascalprecht.translate'])
 
-    .run(function ($ionicPlatform, $rootScope, GoogleAnalytics) {
+    .run(function ($ionicPlatform, $rootScope, GoogleAnalytics, $translate) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -17,6 +17,17 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
                     console.log("* Changing route: "+ toState.name);
                     GoogleAnalytics.track('send', 'pageview', {'page': toState.name});
                 });
+
+            // I18n plugin configuration
+            if(typeof navigator.globalization !== "undefined") {
+                navigator.globalization.getPreferredLanguage(function(language) {
+                    $translate.use((language.value).split("-")[0]).then(function(data) {
+                        console.log("SUCCESS -> " + data);
+                    }, function(error) {
+                        console.log("ERROR -> " + error);
+                    });
+                }, null);
+            }
 
         });
     })
