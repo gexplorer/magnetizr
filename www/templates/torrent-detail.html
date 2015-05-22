@@ -26,25 +26,25 @@
             <div class="item item-icon-left">
                 <i class="icon ion-android-arrow-dropup-circle"></i>
                 Seeds
-                <span class="badge badge-positive">{{torrent.seed}}</span>
+                <span class="badge badge-positive">{{torrent.seed}}{{torrent.seedUnits}}</span>
             </div>
 
             <div class="item item-icon-left">
                 <i class="icon ion-android-arrow-dropdown-circle"></i>
                 Leeches
-                <span class="badge badge-assertive">{{torrent.leech}}</span>
+                <span class="badge badge-assertive">{{torrent.leech}}{{torrent.leechUnits}}</span>
             </div>
 
             <div class="item item-icon-left">
                 <i class="icon ion-document"></i>
                 Size
-                <span class="badge">{{torrent.size}}</span>
+                <span class="badge">{{torrent.size}} {{torrent.sizeUnits}}</span>
             </div>
 
             <div class="item item-icon-left">
                 <i class="icon ion-calendar"></i>
                 Age
-                <span class="badge">{{torrent.age}}</span>
+                <span class="badge">{{torrent.age}} {{torrent.ageUnits}}</span>
             </div>
 
             <a class="item item-icon-left" href="#" ng-click="imdb(torrent)" ng-show="torrent.imdb">

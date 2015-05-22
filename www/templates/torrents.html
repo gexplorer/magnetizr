@@ -30,10 +30,10 @@
                     <div class="col">
                         <h2>{{torrent.name}}</h2>
 
-                        <p><i class="ion ion-android-arrow-dropup-circle"></i> {{torrent.seed}} <i
-                                class="ion ion-android-arrow-dropdown-circle"></i> {{torrent.leech}} <i
-                                class="ion ion-document"></i> {{torrent.size}} <i class="ion ion-calendar"></i>
-                            {{torrent.age}}</p>
+                        <p><i class="ion ion-android-arrow-dropup-circle"></i> {{torrent.seed}}{{torrent.seedUnits}} <i
+                                class="ion ion-android-arrow-dropdown-circle"></i> {{torrent.leech}}{{torrent.leechUnits}} <i
+                                class="ion ion-document"></i> {{torrent.size}} {{torrent.sizeUnits}} <i class="ion ion-calendar"></i>
+                            {{torrent.age}} {{torrent.ageUnits}}</p>
                     </div>
                 </div>
 

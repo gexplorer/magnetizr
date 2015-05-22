@@ -96,30 +96,43 @@ angular.module('magnetizr.services', [])
             return color;
         }
 
-        function getFormattedSize(size) {
+        function getSizeWithUnits(size) {
             var numberOfDivisions = 0;
             for (numberOfDivisions = 0; (size >= 1024) && (numberOfDivisions < 4); numberOfDivisions++) {
                 size = size / 1024;
             }
 
+            var sizeObject = new Object();
+            sizeObject.size = Math.round(Math.round(size * 100) / 100);
+
             switch (numberOfDivisions) {
                 case 0:
-                    return Math.round(Math.round(size * 100) / 100) + " B";
+                    sizeObject.units = " B";
+                    break;
                 case 1:
-                    return Math.round(Math.round(size * 100) / 100) + " KB";
+                    sizeObject.units = " KB";
+                    break;
                 case 2:
-                    return Math.round(Math.round(size * 100) / 100) + " MB";
+                    sizeObject.units = " MB";
+                    break;
                 case 3:
-                    return (Math.round(size * 100) / 100) + " GB";
+                    sizeObject.size = (Math.round(size * 100) / 100);
+                    sizeObject.units = " GB";
             }
+
+            return sizeObject;
         }
 
-        function getFormattedPeople(people){
+        function getPeopleWithUnits(people){
+            var peopleObject = new Object();
             if(people < 1000){
-                return people;
+                peopleObject.people = people;
+                peopleObject.units = "";
             }else{
-                return Math.round(people/1000) + "k"
+                peopleObject.people = Math.round(people/1000);
+                peopleObject.units = "k";
             }
+            return peopleObject;
         }
 
         var getAgeFromTo = {
@@ -152,31 +165,41 @@ angular.module('magnetizr.services', [])
             }
         };
 
-        function getAge(from) {
+        function getAgeWithUnits(from) {
+            var ageObject = new Object();
+
             var years = getAgeFromTo.inYears(new Date(from), new Date());
             if (years > 0) {
-                return getFormattedAge(years, "year");
+                ageObject.age = years;
+                ageObject.units = getAgeUnits(years, "year");
+                return ageObject;
             }
 
             var months = getAgeFromTo.inMonths(new Date(from), new Date());
             if (months > 0) {
-                return getFormattedAge(months, "month");
+                ageObject.age = months;
+                ageObject.units = getAgeUnits(months, "month");
+                return ageObject;
             }
 
             var weeks = getAgeFromTo.inWeeks(new Date(from), new Date());
             if (weeks > 0) {
-                return getFormattedAge(weeks, "week");
+                ageObject.age = weeks;
+                ageObject.units = getAgeUnits(weeks, "week");
+                return ageObject;
             }
 
             var days = getAgeFromTo.inDays(new Date(from), new Date());
-            return getFormattedAge(days, "day");
+            ageObject.age = days;
+            ageObject.units = getAgeUnits(days, "day");
+            return ageObject;
         }
 
-        function getFormattedAge(number, unitName) {
+        function getAgeUnits(number, unitName) {
             if (number > 1) {
                 unitName += "s";
             }
-            return number + " " + unitName;
+            return " " + unitName;
         }
 
 
@@ -196,14 +219,22 @@ angular.module('magnetizr.services', [])
 
                     for (var i = 0; i < torrentItems.length; i++) {
                         var torrent = torrentItems[i];
+                        var size = getSizeWithUnits(torrent.size);
+                        var age = getAgeWithUnits(torrent.upload_date);
+                        var seed = getPeopleWithUnits(torrent.seeds);
+                        var leech = getPeopleWithUnits(torrent.leeches);
                         torrents.push({
                             id: torrent.torrent_hash,
                             name: torrent.torrent_title,
                             magnet: torrent.magnet_uri,
-                            size: getFormattedSize(torrent.size),
-                            age: getAge(torrent.upload_date),
-                            seed: getFormattedPeople(torrent.seeds),
-                            leech: getFormattedPeople(torrent.leeches),
+                            size: size.size,
+                            sizeUnits: size.units,
+                            age: age.age,
+                            ageUnits: age.units,
+                            seed: seed.people,
+                            seedUnits: seed.units,
+                            leech: leech.people,
+                            leechUnits: leech.units,
                             category: torrent.torrent_category,
                             color: getColor(torrent.torrent_category),
                             icon: getIcon(torrent.torrent_category),
