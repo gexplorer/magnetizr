@@ -40,12 +40,46 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
         $urlRouterProvider.otherwise('/torrents');
 
         $translateProvider.translations('en', {
-            hello_message: "Howdy",
-            goodbye_message: "Goodbye"
+            Search: "Search",
+            year: " year",
+            years: " years",
+            month: " month",
+            months: " months",
+            day: " day",
+            days: " days",
+            Size: "Size",
+            Age: "Age",
+            openIMDB: "Open in IMDB",
+            getMagnet: "Get magnet",
+            TV: "TV",
+            Movies: "Movies",
+            Anime: "Anime",
+            Books: "Books",
+            Music: "Music",
+            Games: "Games",
+            Applications: "Applications",
+            XXX: "XXX"
         });
         $translateProvider.translations('es', {
-            hello_message: "Hola",
-            goodbye_message: "Adios"
+            Search: "Buscar",
+            year: " año",
+            years: " años",
+            month: " mes",
+            months: " meses",
+            day: " día",
+            days: " días",
+            Size: "Tamaño",
+            Age: "Edad",
+            openIMDB: "Abrir en IMDB",
+            getMagnet: "Abrir magnet",
+            TV: "TV",
+            Movies: "Películas",
+            Anime: "Anime",
+            Books: "Libros",
+            Music: "Música",
+            Games: "Juegos",
+            Applications: "Aplicaciones",
+            XXX: "XXX"
         });
         $translateProvider.preferredLanguage("en");
         $translateProvider.fallbackLanguage("en");

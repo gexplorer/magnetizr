@@ -9,7 +9,7 @@
                 <form name="form" ng-submit="search()">
                     <label class="item-input">
                         <i class="ion ion-search placeholder-icon"></i>
-                        <input type="text" id="search" name="search" placeholder="Search" ng-model="query.string"
+                        <input type="text" id="search" name="search" placeholder="{{'Search' | translate}}" ng-model="query.string"
                                ng-submit="search()" focus-on="search" required/>
                     </label>
                 </form>
@@ -30,11 +30,10 @@
                     <div class="col">
                         <h2>{{torrent.name}}</h2>
 
-                        <p><h1>{{"hello_message" | translate}}</h1>
-                            <i class="ion ion-android-arrow-dropup-circle"></i> {{torrent.seed}}{{torrent.seedUnits}} <i
+                        <p><i class="ion ion-android-arrow-dropup-circle"></i> {{torrent.seed}}{{torrent.seedUnits}} <i
                                 class="ion ion-android-arrow-dropdown-circle"></i> {{torrent.leech}}{{torrent.leechUnits}} <i
                                 class="ion ion-document"></i> {{torrent.size}} {{torrent.sizeUnits}} <i class="ion ion-calendar"></i>
-                            {{torrent.age}} {{torrent.ageUnits}}</p>
+                            {{torrent.age}} {{torrent.ageUnits | translate}}</p>
                     </div>
                 </div>
 

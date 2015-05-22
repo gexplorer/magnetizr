@@ -199,7 +199,7 @@ angular.module('magnetizr.services', [])
             if (number > 1) {
                 unitName += "s";
             }
-            return " " + unitName;
+            return unitName;
         }
 
 

@@ -6,7 +6,7 @@
     </ion-nav-bar>
 
     <ion-nav-title>
-        <i class="ion button-icon ion-{{torrent.icon}}"></i>{{torrent.category}}
+        <i class="ion button-icon ion-{{torrent.icon}}"></i>{{torrent.category | translate}}
     </ion-nav-title>
 
     <ion-content>
@@ -37,25 +37,24 @@
 
             <div class="item item-icon-left">
                 <i class="icon ion-document"></i>
-                Size
+                {{'Size' | translate}}
                 <span class="badge">{{torrent.size}} {{torrent.sizeUnits}}</span>
             </div>
 
             <div class="item item-icon-left">
                 <i class="icon ion-calendar"></i>
-                Age
-                <span class="badge">{{torrent.age}} {{torrent.ageUnits}}</span>
+                {{'Age' | translate}}
+                <span class="badge">{{torrent.age}} {{torrent.ageUnits | translate}}</span>
             </div>
 
             <a class="item item-icon-left" href="#" ng-click="imdb(torrent)" ng-show="torrent.imdb">
                 <i class="icon ion-android-open"></i>
-                Open in IMDB
-
+                {{'openIMDB' | translate}}
             </a>
 
             <a class="item item-icon-left assertive" href="#" ng-click="download(torrent)">
                 <i class="icon ion-magnet"></i>
-                Get magnet
+                {{'getMagnet' | translate}}
             </a>
         </div>
 
