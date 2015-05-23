@@ -71,7 +71,9 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
             Music: "Music",
             Games: "Games",
             Applications: "Applications",
-            XXX: "XXX"
+            XXX: "XXX",
+            notFound: "No torrents found.",
+            unknownError: "Oops! Something went wrong. Please try again later."
         });
         $translateProvider.translations('es', {
             Search: "Buscar",
@@ -94,7 +96,9 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
             Music: "Música",
             Games: "Juegos",
             Applications: "Aplicaciones",
-            XXX: "XXX"
+            XXX: "XXX",
+            notFound: "No se ha encontrado ningún torrent.",
+            unknownError: "Oops! Algo malo ha sucedido. Por favor, inténtalo más tarde."
         });
         $translateProvider.preferredLanguage("en");
         $translateProvider.fallbackLanguage("en");

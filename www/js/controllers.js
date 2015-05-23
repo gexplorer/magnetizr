@@ -1,6 +1,6 @@
 angular.module('magnetizr.controllers', [])
 
-    .controller('TorrentsCtrl', function ($scope, Torrents, GoogleAnalytics, $ionicLoading, focus) {
+    .controller('TorrentsCtrl', function ($scope, Torrents, GoogleAnalytics, $ionicLoading, focus, $translate) {
         $scope.torrents = [];
         $scope.form = {};
         $scope.message = "";
@@ -39,8 +39,10 @@ angular.module('magnetizr.controllers', [])
             };
             var error = function (response) {
                 if (response.status === 0) {
-                    $scope.message = "Oops! Something went wrong. Please try again later.";
-                } else {
+                    $scope.message = $translate.instant("unknownError");
+                } if (response.status === 404) {
+                    $scope.message = $translate.instant("notFound");
+                }else {
                     $scope.message = response.data.message;
                 }
                 $scope.torrents = [];
