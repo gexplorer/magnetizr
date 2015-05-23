@@ -32,7 +32,7 @@ angular.module('magnetizr.services', [])
         }
     })
 
-    .factory('Torrents', function ($http) {
+    .factory('Torrents', function ($http, $cacheFactory) {
 
         var torrents = [];
 
@@ -202,6 +202,21 @@ angular.module('magnetizr.services', [])
             return unitName;
         }
 
+        function isCacheOld(cache, key, timestampKey) {
+            var createdTimestamp = cache.get(key + timestampKey);
+
+            if (!createdTimestamp || is15OrMoreMinutesOfDifferenceFromNow(createdTimestamp)) {
+                cache.remove(key);
+                cache.remove(key + timestampKey);
+                return true;
+            }
+            return false;
+        }
+
+        function is15OrMoreMinutesOfDifferenceFromNow(to) {
+            var now = new Date();
+            return (now.getTime() - to) >= 900000;
+        }
 
         return {
             get: function (torrentId) {
@@ -213,6 +228,9 @@ angular.module('magnetizr.services', [])
                 return null;
             },
             search: function (query) {
+                var cache = $cacheFactory('getStrikeTorrents');
+                var cacheTimestampKey = "_timestamp";
+
                 var success = function (payload) {
                     torrents = [];
                     var torrentItems = payload.data.torrents;
@@ -241,15 +259,24 @@ angular.module('magnetizr.services', [])
                             imdb: torrent.imdbid
                         });
                     }
+                    cache.put(query, torrents);
+                    var now = new Date();
+                    cache.put(query + cacheTimestampKey, now.getTime());
+
                     return torrents;
                 };
 
-                return $http.get('https://getstrike.net/api/v2/torrents/search/?phrase=' + query).then(success);
+
+                var cachedTorrents = cache.get(query);
+
+                if (!cachedTorrents || isCacheOld(cache, query, cacheTimestampKey)) {
+                    return $http.get('https://getstrike.net/api/v2/torrents/search/?phrase=' + query).then(success);
+                } else {
+                    return cachedTorrents;
+                }
             },
             download: function (torrent) {
                 navigator.app.loadUrl(torrent.magnet, {openExternal: true});
             }
-        }
-            ;
-    })
-;
+        };
+    });
