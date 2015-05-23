@@ -50,58 +50,9 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
 
         $urlRouterProvider.otherwise('/torrents');
 
-        /*$translateProvider.translations('en', {
-            Search: "Search",
-            year: " year",
-            years: " years",
-            month: " month",
-            months: " months",
-            week: "week",
-            weeks: "weeks",
-            day: " day",
-            days: " days",
-            Size: "Size",
-            Age: "Age",
-            openIMDB: "Open in IMDB",
-            getMagnet: "Get magnet",
-            TV: "TV",
-            Movies: "Movies",
-            Anime: "Anime",
-            Books: "Books",
-            Music: "Music",
-            Games: "Games",
-            Applications: "Applications",
-            XXX: "XXX",
-            notFound: "No torrents found.",
-            unknownError: "Oops! Something went wrong. Please try again later."
-        });
-        $translateProvider.translations('es', {
-            Search: "Buscar",
-            year: " año",
-            years: " años",
-            month: " mes",
-            months: " meses",
-            week: "semana",
-            weeks: "semanas",
-            day: " día",
-            days: " días",
-            Size: "Tamaño",
-            Age: "Edad",
-            openIMDB: "Abrir en IMDB",
-            getMagnet: "Abrir magnet",
-            TV: "TV",
-            Movies: "Películas",
-            Anime: "Anime",
-            Books: "Libros",
-            Music: "Música",
-            Games: "Juegos",
-            Applications: "Aplicaciones",
-            XXX: "XXX",
-            notFound: "No se ha encontrado ningún torrent.",
-            unknownError: "Oops! Algo malo ha sucedido. Por favor, inténtalo más tarde."
-        });*/
+        $translateProvider.useSanitizeValueStrategy('escaped');
         $translateProvider.useStaticFilesLoader({
-            prefix: 'locale-',
+            prefix: 'i18n/locale-',
             suffix: '.json'
         });
 
