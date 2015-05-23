@@ -21,5 +21,6 @@
   "Applications": "Applications",
   "XXX": "XXX",
   "notFound": "No torrents found.",
-  "unknownError": "Oops! Something went wrong. Please try again later."
+  "unknownError": "Oops! Something went wrong. Please try again later.",
+  "noConnection": "Oops! You don't have Internet connection."
 }
