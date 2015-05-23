@@ -50,7 +50,7 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
 
         $urlRouterProvider.otherwise('/torrents');
 
-        $translateProvider.translations('en', {
+        /*$translateProvider.translations('en', {
             Search: "Search",
             year: " year",
             years: " years",
@@ -99,8 +99,13 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
             XXX: "XXX",
             notFound: "No se ha encontrado ningún torrent.",
             unknownError: "Oops! Algo malo ha sucedido. Por favor, inténtalo más tarde."
+        });*/
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'locale-',
+            suffix: '.json'
         });
-        $translateProvider.preferredLanguage("en");
-        $translateProvider.fallbackLanguage("en");
+
+        $translateProvider.preferredLanguage("es");
+        $translateProvider.fallbackLanguage("es");
 
     });
