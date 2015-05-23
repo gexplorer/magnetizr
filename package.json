@@ -22,9 +22,18 @@
       "locator": "https://github.com/danwilson/google-analytics-plugin.git",
       "id": "cordova-plugin-google-analytics"
     },
+    {
+      "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-globalization.git",
+      "id": "cordova-plugin-globalization"
+    },
     "com.google.playservices"
   ],
   "cordovaPlatforms": [
-    "android"
+    "android",
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    }
   ]
 }
