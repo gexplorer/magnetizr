@@ -56,7 +56,7 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
             suffix: '.json'
         });
 
-        $translateProvider.preferredLanguage("es");
-        $translateProvider.fallbackLanguage("es");
+        $translateProvider.preferredLanguage("en");
+        $translateProvider.fallbackLanguage("en");
 
     });
