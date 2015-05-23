@@ -41,15 +41,21 @@ angular.module('magnetizr.controllers', [])
                     $ionicLoading.hide();
                 };
                 var error = function (response) {
-                    if (response.status === 0) {
-                        $scope.message = $translate.instant("unknownError");
-                    } if (response.status === 404) {
-                        $scope.message = $translate.instant("notFound");
-                    }else {
-                        $scope.message = response.data.message;
+                    console.log(response);
+                    switch (response.status) {
+                        case 0:
+                            $scope.message = $translate.instant("unknownError");
+                            break;
+                        case 404:
+                            $scope.message = $translate.instant("notFoundError");
+                            break;
+                        default :
+                            $scope.message = response.data.message;
                     }
-                    $scope.torrents = [];
+
                     $ionicLoading.hide();
+                    $scope.torrents = [];
+
                 };
                 Torrents.search($scope.query.string).then(success, error);
             }
