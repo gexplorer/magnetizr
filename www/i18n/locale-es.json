@@ -21,5 +21,6 @@
   "Applications": "Aplicaciones",
   "XXX": "XXX",
   "notFound": "No se ha encontrado ningún torrent.",
-  "unknownError": "Oops! Algo malo ha sucedido. Por favor, inténtalo más tarde."
+  "unknownError": "Oops! Algo malo ha sucedido. Por favor, inténtalo más tarde.",
+  "noConnection": "Oops! No tienes acceso a Internet."
 }

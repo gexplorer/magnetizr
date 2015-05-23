@@ -24,31 +24,36 @@ angular.module('magnetizr.controllers', [])
         $scope.search = function () {
             document.activeElement.blur();
 
-            $ionicLoading.show({
-                noBackdrop: true,
-                delay: 500,
-                template: '<ion-spinner></ion-spinner>'
-            });
+            if(navigator.connection.type == Connection.NONE) {
+                $scope.message = $translate.instant("noConnection");
+            } else {
+                $ionicLoading.show({
+                    noBackdrop: true,
+                    delay: 500,
+                    template: '<ion-spinner></ion-spinner>'
+                });
 
-            GoogleAnalytics.track('send', 'pageview', {'page': '/search?q=' + $scope.query.string});
+                GoogleAnalytics.track('send', 'pageview', {'page': '/search?q=' + $scope.query.string});
 
-            var success = function (torrents) {
-                $scope.message = "";
-                $scope.torrents = torrents;
-                $ionicLoading.hide();
-            };
-            var error = function (response) {
-                if (response.status === 0) {
-                    $scope.message = $translate.instant("unknownError");
-                } if (response.status === 404) {
-                    $scope.message = $translate.instant("notFound");
-                }else {
-                    $scope.message = response.data.message;
-                }
-                $scope.torrents = [];
-                $ionicLoading.hide();
-            };
-            Torrents.search($scope.query.string).then(success, error);
+                var success = function (torrents) {
+                    $scope.message = "";
+                    $scope.torrents = torrents;
+                    $ionicLoading.hide();
+                };
+                var error = function (response) {
+                    if (response.status === 0) {
+                        $scope.message = $translate.instant("unknownError");
+                    } if (response.status === 404) {
+                        $scope.message = $translate.instant("notFound");
+                    }else {
+                        $scope.message = response.data.message;
+                    }
+                    $scope.torrents = [];
+                    $ionicLoading.hide();
+                };
+                Torrents.search($scope.query.string).then(success, error);
+            }
+
         };
     })
 
