@@ -202,7 +202,6 @@ angular.module('magnetizr.services', [])
             return unitName;
         }
 
-
         return {
             get: function (torrentId) {
                 for (var i = 0; i < torrents.length; i++) {
@@ -213,6 +212,7 @@ angular.module('magnetizr.services', [])
                 return null;
             },
             search: function (query) {
+
                 var success = function (payload) {
                     torrents = [];
                     var torrentItems = payload.data.torrents;
@@ -241,15 +241,14 @@ angular.module('magnetizr.services', [])
                             imdb: torrent.imdbid
                         });
                     }
+
                     return torrents;
                 };
 
-                return $http.get('https://getstrike.net/api/v2/torrents/search/?phrase=' + query).then(success);
+                return $http.get('https://getstrike.net/api/v2/torrents/search/?phrase=' + query, {cache: true}).then(success);
             },
             download: function (torrent) {
                 navigator.app.loadUrl(torrent.magnet, {openExternal: true});
             }
-        }
-            ;
-    })
-;
+        };
+    });
