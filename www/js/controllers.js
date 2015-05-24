@@ -47,7 +47,11 @@ angular.module('magnetizr.controllers', [])
                             $scope.message = $translate.instant("unknownError");
                             break;
                         case 404:
-                            $scope.message = $translate.instant("notFoundError");
+                            if (response.data.message.includes("Your query must be at least 4")) {
+                                $scope.message = $translate.instant("lessThan4CharactersError");
+                            } else {
+                                $scope.message = $translate.instant("notFoundError");
+                            }
                             break;
                         default :
                             $scope.message = response.data.message;

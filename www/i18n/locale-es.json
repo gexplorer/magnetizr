@@ -22,5 +22,6 @@
   "XXX": "XXX",
   "notFoundError": "No se ha encontrado ningún torrent.",
   "unknownError": "Oops! Algo malo ha sucedido. Por favor, inténtalo más tarde.",
-  "noConnection": "Oops! No tienes acceso a Internet."
+  "noConnection": "Oops! No tienes acceso a Internet.",
+  "lessThan4CharactersError": "Tu búsqueda debe de tener al menos 4 caracteres sin espacios en blanco."
 }

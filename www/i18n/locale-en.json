@@ -22,5 +22,6 @@
   "XXX": "XXX",
   "notFoundError": "No torrents found.",
   "unknownError": "Oops! Something went wrong. Please try again later.",
-  "noConnection": "Oops! You don't have Internet connection."
+  "noConnection": "Oops! You don't have Internet connection.",
+  "lessThan4CharactersError": "Your query must be at least 4 characters long without white space."
 }
