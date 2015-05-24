@@ -1,6 +1,6 @@
-angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services', 'magnetizr.directives', 'pascalprecht.translate'])
+angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services', 'magnetizr.directives', 'pascalprecht.translate', 'angular-cache'])
 
-    .run(function ($ionicPlatform, $rootScope, GoogleAnalytics, $translate) {
+    .run(function ($ionicPlatform, $rootScope, GoogleAnalytics, $translate, $http, CacheFactory) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -28,6 +28,12 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.servic
                     });
                 }, null);
             }
+
+            $http.defaults.cache = CacheFactory('defaultCache', {
+                maxAge: 15 * 60 * 1000, // Items added to this cache expire after 15 minutes
+                capacity: 20, // Maximum number of items a cache can hold
+                deleteOnExpire: 'aggressive' // Items will be deleted from this cache when they expire
+            });
 
         });
     })
