@@ -16,9 +16,13 @@ angular.module('magnetizr.controllers', [])
             Torrents.download(torrent);
         };
 
-        $scope.clear = function (a, b, c) {
+        $scope.clearSearch = function () {
             $scope.query.string = "";
             focus("search");
+        };
+
+        $scope.clearResults = function () {
+            $scope.torrents = [];
         };
 
         $scope.search = function () {

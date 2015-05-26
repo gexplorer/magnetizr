@@ -10,10 +10,10 @@
                     <label class="item-input">
                         <i class="ion ion-search placeholder-icon"></i>
                         <input type="text" id="search" name="search" placeholder="{{'Search' | translate}}" ng-model="query.string"
-                               ng-submit="search()" focus-on="search" required/>
+                               ng-submit="search()" focus-on="search" ng-focus="clearResults()" required/>
                     </label>
                 </form>
-                <i class="icon ion-android-close" ng-click="clear()" ng-show="query.string"></i>
+                <i class="icon ion-android-close" ng-click="clearSearch()" ng-show="query.string"></i>
             </div>
 
             <div class="message padding text-center" ng-show="message">
