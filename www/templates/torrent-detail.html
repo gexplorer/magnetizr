@@ -52,10 +52,17 @@
                 {{'openIMDB' | translate}}
             </a>
 
-            <a class="item item-icon-left assertive" href="#" ng-click="download(torrent)">
-                <i class="icon ion-magnet"></i>
-                {{'getMagnet' | translate}}
-            </a>
+            <div class="item tabs tabs-secondary tabs-icon-top">
+                <a class="tab-item assertive" href="#" ng-click="download(torrent)">
+                    <i class="icon ion-magnet"></i>
+                    {{'getMagnet' | translate}}
+                </a>
+                <a class="tab-item" href="#" ng-click="copy(torrent)">
+                    <i class="icon ion-ios-copy"></i>
+                    {{'copyMagnet' | translate}}
+                </a>
+            </div>
+
         </div>
 
     </ion-content>

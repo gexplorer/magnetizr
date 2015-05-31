@@ -12,6 +12,8 @@
   "Age": "Edad",
   "openIMDB": "Abrir en IMDB",
   "getMagnet": "Abrir magnet",
+  "copyMagnet": "Copiar magnet",
+  "magnetCopied": "Magnet copiado al portapapeles",
   "TV": "TV",
   "Movies": "Películas",
   "Anime": "Anime",
