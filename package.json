@@ -25,6 +25,10 @@
       "id": "cordova-plugin-globalization"
     },
     "com.verso.cordova.clipboard",
+    {
+      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
+      "id": "cordova-plugin-whitelist"
+    },
     "cordova-plugin-inappbrowser"
   ],
   "cordovaPlatforms": [
