@@ -1,4 +1,4 @@
-angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.services', 'magnetizr.directives', 'pascalprecht.translate', 'angular-cache'])
+angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.directives', 'pascalprecht.translate', 'angular-cache'])
 
     .run(function ($ionicPlatform, $rootScope, GoogleAnalytics, $translate, $http, CacheFactory) {
         $ionicPlatform.ready(function () {

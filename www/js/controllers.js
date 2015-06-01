@@ -1,4 +1,4 @@
-angular.module('magnetizr.controllers', [])
+angular.module('magnetizr.controllers', ['magnetizr.services'])
 
     .controller('TorrentsCtrl', function ($scope, Torrents, GoogleAnalytics, $ionicLoading, focus, $translate) {
         $scope.torrents = [];
