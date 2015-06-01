@@ -9,8 +9,9 @@
                 <form name="form" ng-submit="search()">
                     <label class="item-input">
                         <i class="ion ion-search placeholder-icon"></i>
-                        <input type="text" id="search" name="search" placeholder="{{'Search' | translate}}" ng-model="query.string"
-                               ng-submit="search()" focus-on="search" ng-focus="clearResults()" required/>
+                        <input type="text" id="search" name="search" placeholder="{{'Search' | translate}}"
+                               ng-model="query.string" ng-submit="search()" focus-on="search"
+                               ng-focus="clearResults()"/>
                     </label>
                 </form>
                 <i class="icon ion-android-close" ng-click="clearSearch()" ng-show="query.string"></i>
@@ -41,10 +42,13 @@
                     <div class="col">
                         <h2>{{torrent.name}}</h2>
 
-                        <p><i class="ion ion-android-arrow-dropup-circle"></i> {{torrent.seed}}{{torrent.seedUnits}} <i
-                                class="ion ion-android-arrow-dropdown-circle"></i> {{torrent.leech}}{{torrent.leechUnits}} <i
-                                class="ion ion-document"></i> {{torrent.size}} {{torrent.sizeUnits}} <i class="ion ion-calendar"></i>
-                            {{torrent.age}} {{torrent.ageUnits | translate}}</p>
+                        <p>
+                            <i class="ion ion-android-arrow-dropup-circle"></i> {{torrent.seed}}{{torrent.seedUnits}}&nbsp;
+                            <i class="ion ion-android-arrow-dropdown-circle"></i>&nbsp;
+                            {{torrent.leech}}{{torrent.leechUnits}}&nbsp;
+                            <i class="ion ion-document"></i> {{torrent.size}} {{torrent.sizeUnits}}&nbsp;
+                            <i class="ion ion-calendar"></i> {{torrent.age}} {{torrent.ageUnits | translate}}
+                        </p>
                     </div>
                 </div>
 
