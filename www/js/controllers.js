@@ -8,12 +8,12 @@ angular.module('magnetizr.controllers', [])
             string: ""
         };
 
-        $scope.download = function (torrent) {
+        $scope.get = function (torrent) {
             GoogleAnalytics.track('send', 'event', {
                 'eventCategory': torrent.category,
-                'eventAction': 'download'
+                'eventAction': 'get'
             });
-            Torrents.download(torrent);
+            cordova.InAppBrowser.open(torrent.magnet, '_system');
         };
 
         $scope.clearSearch = function () {
@@ -28,7 +28,7 @@ angular.module('magnetizr.controllers', [])
         $scope.search = function () {
             document.activeElement.blur();
 
-            if(navigator.connection && navigator.connection.type == Connection.NONE) {
+            if (navigator.connection && navigator.connection.type == Connection.NONE) {
                 $scope.message = $translate.instant("noConnection");
             } else {
                 $ionicLoading.show({
@@ -78,10 +78,10 @@ angular.module('magnetizr.controllers', [])
             $ionicHistory.goBack();
         };
 
-        $scope.download = function (torrent) {
+        $scope.get = function (torrent) {
             GoogleAnalytics.track('send', 'event', {
                 'eventCategory': $scope.torrent.category,
-                'eventAction': 'download'
+                'eventAction': 'get'
             });
             cordova.InAppBrowser.open(torrent.magnet, '_system');
         };
