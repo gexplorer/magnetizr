@@ -35,6 +35,7 @@ angular.module('magnetizr.services', [])
     .factory('Torrents', function ($http) {
 
         var torrents = [];
+        var searchUrl = "https://getstrike.net/api/v2/torrents/search/?phrase=";
 
         function getColor(category) {
             var color = "light";
@@ -245,10 +246,7 @@ angular.module('magnetizr.services', [])
                     return torrents;
                 };
 
-                return $http.get('https://getstrike.net/api/v2/torrents/search/?phrase=' + query, {cache: true}).then(success);
-            },
-            download: function (torrent) {
-                navigator.app.loadUrl(torrent.magnet, {openExternal: true});
+                return $http.get(searchUrl + query, {cache: true}).then(success);
             }
         };
     });
