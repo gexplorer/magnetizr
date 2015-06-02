@@ -8,6 +8,8 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
             string: ""
         };
 
+        $scope.empty = true;
+
         $scope.get = function (torrent) {
             GoogleAnalytics.track('send', 'event', {
                 'eventCategory': torrent.category,
@@ -23,9 +25,11 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
 
         $scope.clearResults = function () {
             $scope.torrents = [];
+            $scope.empty = true;
         };
 
         $scope.search = function () {
+            $scope.empty = false;
             document.activeElement.blur();
 
             if (navigator.connection && navigator.connection.type == Connection.NONE) {
