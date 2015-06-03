@@ -25,6 +25,7 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
 
         $scope.clearResults = function () {
             $scope.torrents = [];
+            $scope.message = "";
             $scope.empty = true;
         };
 
