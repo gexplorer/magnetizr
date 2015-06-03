@@ -80,7 +80,7 @@ angular.module('magnetizr.services', ['magnetizr.utils'])
                     return torrents;
                 };
 
-                return $http.get(searchUrl + query, {cache: true}).then(success);
+                return $http.get(searchUrl + query, {cache: false}).then(success);
             }
         };
     });
