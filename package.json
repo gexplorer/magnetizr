@@ -1,7 +1,7 @@
 {
   "name": "magnetizr",
   "version": "1.0.0",
-  "description": "magnetizr: A magnet searching app",
+  "description": "magnetizr: Torrent searching made easy",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^1.3.3",
