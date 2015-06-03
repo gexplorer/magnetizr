@@ -37,7 +37,6 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
                 $scope.message = $translate.instant("noConnection");
             } else {
                 $ionicLoading.show({
-                    noBackdrop: true,
                     delay: 500,
                     template: '<ion-spinner></ion-spinner>'
                 });
