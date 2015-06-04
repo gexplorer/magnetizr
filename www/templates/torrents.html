@@ -16,7 +16,18 @@
                 <i class="icon ion-android-close" ng-click="clear()" ng-show="query.string"></i>
             </div>
 
-            <ion-item class="item item-divider item-text-wrap" ng-bind="message" ng-show="message"></ion-item>
+            <div class="message padding text-center" ng-show="message">
+                <div class="row">
+                    <div class="col">
+                        <i class="ion ion-android-alert"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3>{{message}}</h3>
+                    </div>
+                </div>
+            </div>
 
             <ion-item class="item" ng-repeat="torrent in torrents"
                       href="#/torrents/{{torrent.id}}">
