@@ -8,12 +8,12 @@ angular.module('magnetizr.controllers', [])
             string: ""
         };
 
-        $scope.download = function (torrent) {
+        $scope.get = function (torrent) {
             GoogleAnalytics.track('send', 'event', {
                 'eventCategory': torrent.category,
-                'eventAction': 'download'
+                'eventAction': 'get'
             });
-            Torrents.download(torrent);
+            cordova.InAppBrowser.open(torrent.magnet, '_system');
         };
 
         $scope.clearSearch = function () {
@@ -28,7 +28,7 @@ angular.module('magnetizr.controllers', [])
         $scope.search = function () {
             document.activeElement.blur();
 
-            if(navigator.connection && navigator.connection.type == Connection.NONE) {
+            if (navigator.connection && navigator.connection.type == Connection.NONE) {
                 $scope.message = $translate.instant("noConnection");
             } else {
                 $ionicLoading.show({
@@ -71,19 +71,33 @@ angular.module('magnetizr.controllers', [])
         };
     })
 
-    .controller('TorrentDetailCtrl', function ($scope, $state, Torrents, $ionicHistory, GoogleAnalytics) {
+    .controller('TorrentDetailCtrl', function ($scope, $state, Torrents, $ionicHistory, GoogleAnalytics, $ionicLoading, $translate) {
         $scope.torrent = Torrents.get($state.params.torrentId);
 
         $scope.goBack = function () {
             $ionicHistory.goBack();
         };
 
-        $scope.download = function (torrent) {
+        $scope.get = function (torrent) {
             GoogleAnalytics.track('send', 'event', {
                 'eventCategory': $scope.torrent.category,
-                'eventAction': 'download'
+                'eventAction': 'get'
             });
-            navigator.app.loadUrl(torrent.magnet, {openExternal: true});
+            cordova.InAppBrowser.open(torrent.magnet, '_system');
+        };
+
+        $scope.copy = function (torrent) {
+            console.log("* Copy");
+            GoogleAnalytics.track('send', 'event', {
+                'eventCategory': $scope.torrent.category,
+                'eventAction': 'copy'
+            });
+            cordova.plugins.clipboard.copy(torrent.magnet);
+            $ionicLoading.show({
+                template: $translate.instant("magnetCopied"),
+                noBackdrop: true,
+                duration: 2000
+            });
         };
 
         $scope.imdb = function (torrent) {
@@ -91,6 +105,6 @@ angular.module('magnetizr.controllers', [])
                 'eventCategory': $scope.torrent.category,
                 'eventAction': 'imdb'
             });
-            navigator.app.loadUrl("http://www.imdb.com/title/" + torrent.imdb, {openExternal: true});
+            cordova.InAppBrowser.open("http://www.imdb.com/title/" + torrent.imdb, '_system');
         }
     });

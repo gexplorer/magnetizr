@@ -35,6 +35,7 @@ angular.module('magnetizr.services', [])
     .factory('Torrents', function ($http) {
 
         var torrents = [];
+        var searchUrl = "https://getstrike.net/api/v2/torrents/search/?phrase=";
 
         function getColor(category) {
             var color = "light";
@@ -97,12 +98,11 @@ angular.module('magnetizr.services', [])
         }
 
         function getSizeWithUnits(size) {
-            var numberOfDivisions = 0;
-            for (numberOfDivisions = 0; (size >= 1024) && (numberOfDivisions < 4); numberOfDivisions++) {
+            for (var numberOfDivisions = 0; (size >= 1024) && (numberOfDivisions < 4); numberOfDivisions++) {
                 size = size / 1024;
             }
 
-            var sizeObject = new Object();
+            var sizeObject = {};
             sizeObject.size = Math.round(Math.round(size * 100) / 100);
 
             switch (numberOfDivisions) {
@@ -123,13 +123,13 @@ angular.module('magnetizr.services', [])
             return sizeObject;
         }
 
-        function getPeopleWithUnits(people){
-            var peopleObject = new Object();
-            if(people < 1000){
+        function getPeopleWithUnits(people) {
+            var peopleObject = {};
+            if (people < 1000) {
                 peopleObject.people = people;
                 peopleObject.units = "";
-            }else{
-                peopleObject.people = Math.round(people/1000);
+            } else {
+                peopleObject.people = Math.round(people / 1000);
                 peopleObject.units = "k";
             }
             return peopleObject;
@@ -154,10 +154,10 @@ angular.module('magnetizr.services', [])
             inMonths: function (dateFrom, dateTo) {
                 var yearFrom = dateFrom.getFullYear();
                 var yearTo = dateTo.getFullYear();
-                var dateFrom = dateFrom.getMonth();
-                var dateTo = dateTo.getMonth();
+                var monthFrom = dateFrom.getMonth();
+                var monthTo = dateTo.getMonth();
 
-                return (dateTo + 12 * yearTo) - (dateFrom + 12 * yearFrom);
+                return (monthTo + 12 * yearTo) - (monthFrom + 12 * yearFrom);
             },
 
             inYears: function (dateFrom, dateTo) {
@@ -166,7 +166,7 @@ angular.module('magnetizr.services', [])
         };
 
         function getAgeWithUnits(from) {
-            var ageObject = new Object();
+            var ageObject = {};
 
             var years = getAgeFromTo.inYears(new Date(from), new Date());
             if (years > 0) {
@@ -245,10 +245,7 @@ angular.module('magnetizr.services', [])
                     return torrents;
                 };
 
-                return $http.get('https://getstrike.net/api/v2/torrents/search/?phrase=' + query, {cache: true}).then(success);
-            },
-            download: function (torrent) {
-                navigator.app.loadUrl(torrent.magnet, {openExternal: true});
+                return $http.get(searchUrl + query, {cache: true}).then(success);
             }
         };
     });

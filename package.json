@@ -18,23 +18,25 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "com.ionic.keyboard",
+    "com.google.playservices",
     "org.apache.cordova.network-information",
-    {
-      "locator": "https://github.com/danwilson/google-analytics-plugin.git",
-      "id": "cordova-plugin-google-analytics"
-    },
     {
       "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-globalization.git",
       "id": "cordova-plugin-globalization"
     },
-    "com.google.playservices"
+    "com.verso.cordova.clipboard",
+    {
+      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
+      "id": "cordova-plugin-whitelist"
+    },
+    "cordova-plugin-inappbrowser"
   ],
   "cordovaPlatforms": [
-    "android",
     {
       "platform": "android",
       "version": "",
       "locator": "android"
-    }
+    },
+    "android"
   ]
 }
