@@ -1,4 +1,4 @@
-angular.module('magnetizr.services', ['magnetizr.utils'])
+angular.module('magnetizr.services', ['magnetizr.utils', 'xml'])
 
     .factory('GoogleAnalytics', function () {
         if (!window.ga) {
@@ -83,4 +83,63 @@ angular.module('magnetizr.services', ['magnetizr.utils'])
                 return $http.get(searchUrl + query, {cache: false}).then(success);
             }
         };
+    })
+
+    .config(function ($httpProvider) {
+        $httpProvider.interceptors.push('xmlHttpInterceptor');
+    })
+
+    .factory('TorrentsKickass', function ($http, Utils) {
+
+        var torrents = [];
+        var orderBy = "seeders";
+        var orderDir = "desc";
+        var url = "https://kat.cr/usearch/{query}/?rss=1&field=" + orderBy + "&sorder=" + orderDir;
+
+        return {
+            search: function (query) {
+
+                var success = function (response) {
+                    torrents = [];
+                    var torrentItems = response.data.rss.channel.item;
+                    for (var t in torrentItems) {
+                        var torrent = torrentItems[t];
+                        var size = Utils.getSizeWithUnits(torrent.contentLength.__text);
+                        var age = Utils.getAgeWithUnits(torrent.pubDate);
+                        var seed = Utils.getPeopleWithUnits(torrent.seeds.__text);
+                        var leech = Utils.getPeopleWithUnits(torrent.peers.__text);
+                        torrents.push({
+                            id: torrent.infoHash.__text,
+                            name: torrent.title,
+                            magnet: torrent.magnetURI.__cdata,
+                            size: size.size,
+                            sizeUnits: size.units,
+                            age: age.age,
+                            ageUnits: age.units,
+                            seed: seed.people,
+                            seedUnits: seed.units,
+                            leech: leech.people,
+                            leechUnits: leech.units,
+                            category: torrent.category,
+                            color: Utils.getColor(torrent.category),
+                            icon: Utils.getIcon(torrent.category),
+                            imdb: ""
+                        });
+                    }
+                    return torrents;
+                };
+
+                var searchUrl = url.replace("{query}", encodeURIComponent(query));
+                return $http.get(searchUrl + query, {cache: false}).then(success);
+            },
+
+            get: function (torrentId) {
+                for (var i = 0; i < torrents.length; i++) {
+                    if (torrents[i].id == torrentId) {
+                        return torrents[i];
+                    }
+                }
+                return null;
+            }
+        }
     });
