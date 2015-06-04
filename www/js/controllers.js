@@ -36,10 +36,6 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
             if (navigator.connection && navigator.connection.type == Connection.NONE) {
                 $scope.message = $translate.instant("noConnection");
             } else {
-                $ionicLoading.show({
-                    delay: 500,
-                    template: '<ion-spinner></ion-spinner>'
-                });
 
                 GoogleAnalytics.track('send', 'pageview', {'page': '/search?q=' + $scope.query.string});
 
@@ -49,7 +45,6 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
                     $ionicLoading.hide();
                 };
                 var error = function (response) {
-                    console.log(response);
                     switch (response.status) {
                         case 0:
                             $scope.message = $translate.instant("unknownError");
@@ -91,7 +86,6 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
         };
 
         $scope.copy = function (torrent) {
-            console.log("* Copy");
             GoogleAnalytics.track('send', 'event', {
                 'eventCategory': $scope.torrent.category,
                 'eventAction': 'copy'
