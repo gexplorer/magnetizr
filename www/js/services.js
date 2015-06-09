@@ -32,7 +32,7 @@ angular.module('magnetizr.services', ['magnetizr.utils', 'xml'])
         }
     })
 
-    .factory('Torrents', function ($http, Utils) {
+    .factory('TorrentsMock', function ($http, Utils) {
 
         var torrents = [
             {
@@ -201,7 +201,7 @@ angular.module('magnetizr.services', ['magnetizr.utils', 'xml'])
         $httpProvider.interceptors.push('xmlHttpInterceptor');
     })
 
-    .factory('TorrentsKickass', function ($http, Utils) {
+    .factory('Torrents', function ($http, Utils) {
 
         var torrents = [];
         var orderBy = "seeders";
