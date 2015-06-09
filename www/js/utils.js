@@ -166,11 +166,16 @@ angular.module('magnetizr.utils', [])
             return unitName;
         }
 
+        function categorize(longCategory){
+            return longCategory.split(" ")[0];
+        }
+
         return {
             getColor: getColor,
             getIcon: getIcon,
             getSizeWithUnits: getSizeWithUnits,
             getPeopleWithUnits: getPeopleWithUnits,
-            getAgeWithUnits: getAgeWithUnits
+            getAgeWithUnits: getAgeWithUnits,
+            categorize: categorize
         }
     });

@@ -220,6 +220,7 @@ angular.module('magnetizr.services', ['magnetizr.utils', 'xml'])
                         var age = Utils.getAgeWithUnits(torrent.pubDate);
                         var seed = Utils.getPeopleWithUnits(torrent.seeds.__text);
                         var leech = Utils.getPeopleWithUnits(torrent.peers.__text);
+                        var category = Utils.categorize(torrent.category);
                         torrents.push({
                             id: torrent.infoHash.__text,
                             name: torrent.title,
@@ -232,9 +233,9 @@ angular.module('magnetizr.services', ['magnetizr.utils', 'xml'])
                             seedUnits: seed.units,
                             leech: leech.people,
                             leechUnits: leech.units,
-                            category: torrent.category,
-                            color: Utils.getColor(torrent.category),
-                            icon: Utils.getIcon(torrent.category),
+                            category: category,
+                            color: Utils.getColor(category),
+                            icon: Utils.getIcon(category),
                             imdb: ""
                         });
                     }
