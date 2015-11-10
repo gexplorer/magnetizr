@@ -1,1 +1,23 @@
-/* Empty. Add your own CSS if you like */
+.button-round {
+    border-radius: 50% !important;
+    font-size: 2em !important;
+    padding-top: 2px !important;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.message {
+    height: 100%;
+    color: #BABABA;
+    font-size: 3em;
+}
+
+.message .ion {
+    font-size: 3em;
+}
+
+.message h3 {
+    color: #a6a6a6;
+}

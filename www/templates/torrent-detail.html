@@ -1,0 +1,68 @@
+<ion-view>
+
+    <ion-nav-bar class="bar-{{torrent.color}}">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-nav-title>
+        <i class="ion button-icon ion-{{torrent.icon}}"></i>{{torrent.category | translate}}
+    </ion-nav-title>
+
+    <ion-content>
+        <div class="list card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col-1">
+                        <div class="button button-round button-{{torrent.color}}">
+                            <i class="ion ion-{{torrent.icon}}"></i>
+                        </div>
+                    </div>
+                    <div class="col"><h2>{{torrent.name}}</h2></div>
+                </div>
+            </div>
+
+
+            <div class="item item-icon-left">
+                <i class="icon ion-android-arrow-dropup-circle"></i>
+                Seeds
+                <span class="badge badge-positive">{{torrent.seed}}{{torrent.seedUnits}}</span>
+            </div>
+
+            <div class="item item-icon-left">
+                <i class="icon ion-android-arrow-dropdown-circle"></i>
+                Leeches
+                <span class="badge badge-assertive">{{torrent.leech}}{{torrent.leechUnits}}</span>
+            </div>
+
+            <div class="item item-icon-left">
+                <i class="icon ion-document"></i>
+                {{'Size' | translate}}
+                <span class="badge">{{torrent.size}} {{torrent.sizeUnits}}</span>
+            </div>
+
+            <div class="item item-icon-left">
+                <i class="icon ion-calendar"></i>
+                {{'Age' | translate}}
+                <span class="badge">{{torrent.age}} {{torrent.ageUnits | translate}}</span>
+            </div>
+
+            <a class="item item-icon-left" href="#" ng-click="imdb(torrent)" ng-show="torrent.imdb">
+                <i class="icon ion-android-open"></i>
+                {{'openIMDB' | translate}}
+            </a>
+
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item assertive" href="#" ng-click="get(torrent)">
+                    <i class="icon ion-magnet"></i>
+                    {{'getMagnet' | translate}}
+                </a>
+                <a class="tab-item" href="#" ng-click="copy(torrent)">
+                    <i class="icon ion-ios-copy"></i>
+                    {{'copyMagnet' | translate}}
+                </a>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
