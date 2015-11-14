@@ -47,18 +47,15 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
                 };
                 var error = function (response) {
                     switch (response.status) {
-                        case 0:
-                            $scope.message = $translate.instant("unknownError");
-                            break;
                         case 404:
-                            if (response.data.message.includes("Your query must be at least 4")) {
+                            if (response.data && response.data.message && response.data.message.includes("Your query must be at least 4")) {
                                 $scope.message = $translate.instant("lessThan4CharactersError");
                             } else {
                                 $scope.message = $translate.instant("notFoundError");
                             }
                             break;
                         default :
-                            $scope.message = response.data.message;
+                            $scope.message = $translate.instant("unknownError");
                     }
 
                     $ionicLoading.hide();
