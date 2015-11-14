@@ -1,6 +1,6 @@
 angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.directives', 'pascalprecht.translate', 'angular-cache'])
 
-    .run(function ($ionicPlatform, $rootScope, GoogleAnalytics, $translate, $http, CacheFactory) {
+    .run(function ($ionicPlatform, $rootScope, $translate, $http, CacheFactory) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -11,12 +11,6 @@ angular.module('magnetizr', ['ionic', 'magnetizr.controllers', 'magnetizr.direct
                 // org.apache.cordova.statusbar required
                 StatusBar.styleLightContent();
             }
-
-            $rootScope.$on('$stateChangeStart',
-                function (event, toState, toParams, fromState, fromParams) {
-                    console.log("* Changing route: "+ toState.name);
-                    GoogleAnalytics.track('send', 'pageview', {'page': toState.name});
-                });
 
             // I18n plugin configuration
             if(typeof navigator.globalization !== "undefined") {
