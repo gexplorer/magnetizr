@@ -32,6 +32,7 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
         $scope.search = function () {
             $scope.empty = false;
             document.activeElement.blur();
+            $ionicLoading.show();
 
             if (navigator.connection && navigator.connection.type == Connection.NONE) {
                 $scope.message = $translate.instant("noConnection");
