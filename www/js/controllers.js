@@ -1,6 +1,6 @@
 angular.module('magnetizr.controllers', ['magnetizr.services'])
 
-    .controller('TorrentsCtrl', function ($scope, Torrents, $ionicLoading, focus, $translate) {
+    .controller('TorrentsCtrl', function ($scope, Torrents, $ionicLoading, focus, $translate, $ionicPopover) {
         $scope.torrents = [];
         $scope.form = {};
         $scope.message = "";
@@ -9,6 +9,19 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
         };
 
         $scope.empty = true;
+
+        $ionicPopover.fromTemplateUrl('templates/filter.html', {
+            scope: $scope
+        }).then(function (popover) {
+            $scope.filter = popover;
+        });
+
+        $scope.openFilter = function ($event) {
+            $scope.filter.show($event);
+        };
+        $scope.closeFilter = function () {
+            $scope.filter.hide();
+        };
 
         $scope.get = function (torrent) {
             cordova.InAppBrowser.open(torrent.magnet, '_system');
