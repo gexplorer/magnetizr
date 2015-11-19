@@ -1,12 +1,12 @@
 <ion-view>
 
-    <ion-nav-bar class="bar-{{torrent.color}}">
+    <ion-nav-bar class="bar-{{categories[torrent.category].color}}">
         <ion-nav-back-button>
         </ion-nav-back-button>
     </ion-nav-bar>
 
     <ion-nav-title>
-        <i class="ion button-icon ion-{{torrent.icon}}"></i>{{torrent.category | translate}}
+        <i class="ion button-icon ion-{{categories[torrent.category].icon}}"></i>{{torrent.category | translate}}
     </ion-nav-title>
 
     <ion-content>
@@ -14,8 +14,8 @@
             <div class="item item-text-wrap">
                 <div class="row">
                     <div class="col-1">
-                        <div class="button button-round button-{{torrent.color}}">
-                            <i class="ion ion-{{torrent.icon}}"></i>
+                        <div class="button button-round button-{{categories[torrent.category].color}}">
+                            <i class="ion ion-{{categories[torrent.category].icon}}"></i>
                         </div>
                     </div>
                     <div class="col"><h2>{{torrent.name}}</h2></div>

@@ -1,6 +1,6 @@
 angular.module('magnetizr.controllers', ['magnetizr.services'])
 
-    .controller('TorrentsCtrl', function ($scope, Torrents, $ionicLoading, focus, $translate) {
+    .controller('TorrentsCtrl', function ($scope, Torrents, $ionicLoading, focus, $translate, $ionicPopover, Categories) {
         $scope.torrents = [];
         $scope.form = {};
         $scope.message = "";
@@ -8,7 +8,41 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
             string: ""
         };
 
+        $scope.categories = Categories.get();
+
+        $scope.category = '';
+        $scope.categoryIcon = 'funnel';
+        $scope.categoryColor = '';
+
         $scope.empty = true;
+
+        $ionicPopover.fromTemplateUrl('templates/filter.html', {
+            scope: $scope
+        }).then(function (popover) {
+            $scope.filter = popover;
+        });
+
+        $scope.openFilter = function ($event) {
+            $scope.filter.show($event);
+        };
+        $scope.closeFilter = function () {
+            $scope.filter.hide();
+        };
+
+        $scope.changeFilter = function (category) {
+            $scope.category = category;
+            if (category != '') {
+                $scope.categoryColor = $scope.categories[category].color;
+                $scope.categoryIcon = $scope.categories[category].icon;
+            } else {
+                $scope.categoryColor = '';
+                $scope.categoryIcon = 'funnel';
+            }
+            if ($scope.query.string) {
+                $scope.search();
+            }
+            $scope.closeFilter();
+        };
 
         $scope.get = function (torrent) {
             cordova.InAppBrowser.open(torrent.magnet, '_system');
@@ -55,14 +89,16 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
                     $scope.torrents = [];
 
                 };
-                Torrents.search($scope.query.string).then(success, error);
+                Torrents.search($scope.query.string, $scope.category).then(success, error);
             }
 
         };
     })
 
-    .controller('TorrentDetailCtrl', function ($scope, $state, Torrents, $ionicHistory, $ionicLoading, $translate) {
+    .controller('TorrentDetailCtrl', function ($scope, $state, Torrents, $ionicHistory, $ionicLoading, $translate, Categories) {
         $scope.torrent = Torrents.get($state.params.torrentId);
+
+        $scope.categories = Categories.get();
 
         $scope.goBack = function () {
             $ionicHistory.goBack();
