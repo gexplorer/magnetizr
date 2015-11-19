@@ -182,6 +182,9 @@ angular.module('magnetizr.services', ['magnetizr.utils', 'xml'])
                 var success = function (response) {
                     torrents = [];
                     var torrentItems = response.data.rss.channel.item;
+                    if(!Array.isArray(torrentItems)){
+                        torrentItems = [torrentItems];
+                    }
                     for (var t in torrentItems) {
                         var torrent = torrentItems[t];
                         var size = Utils.getSizeWithUnits(torrent.contentLength.__text);
