@@ -1,12 +1,14 @@
 angular.module('magnetizr.controllers', ['magnetizr.services'])
 
-    .controller('TorrentsCtrl', function ($scope, Torrents, $ionicLoading, focus, $translate, $ionicPopover) {
+    .controller('TorrentsCtrl', function ($scope, Torrents, $ionicLoading, focus, $translate, $ionicPopover, Categories) {
         $scope.torrents = [];
         $scope.form = {};
         $scope.message = "";
         $scope.query = {
             string: ""
         };
+
+        $scope.categories = Categories.get();
 
         $scope.empty = true;
 
@@ -74,8 +76,10 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
         };
     })
 
-    .controller('TorrentDetailCtrl', function ($scope, $state, Torrents, $ionicHistory, $ionicLoading, $translate) {
+    .controller('TorrentDetailCtrl', function ($scope, $state, Torrents, $ionicHistory, $ionicLoading, $translate, Categories) {
         $scope.torrent = Torrents.get($state.params.torrentId);
+
+        $scope.categories = Categories.get();
 
         $scope.goBack = function () {
             $ionicHistory.goBack();
