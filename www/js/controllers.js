@@ -10,6 +10,10 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
 
         $scope.categories = Categories.get();
 
+        $scope.category = '';
+        $scope.categoryIcon = 'funnel';
+        $scope.categoryColor = '';
+
         $scope.empty = true;
 
         $ionicPopover.fromTemplateUrl('templates/filter.html', {
@@ -23,6 +27,21 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
         };
         $scope.closeFilter = function () {
             $scope.filter.hide();
+        };
+
+        $scope.changeFilter = function (category) {
+            $scope.category = category;
+            if (category != '') {
+                $scope.categoryColor = $scope.categories[category].color;
+                $scope.categoryIcon = $scope.categories[category].icon;
+            } else {
+                $scope.categoryColor = '';
+                $scope.categoryIcon = 'funnel';
+            }
+            if ($scope.query.string) {
+                $scope.search();
+            }
+            $scope.closeFilter();
         };
 
         $scope.get = function (torrent) {
@@ -70,7 +89,7 @@ angular.module('magnetizr.controllers', ['magnetizr.services'])
                     $scope.torrents = [];
 
                 };
-                Torrents.search($scope.query.string).then(success, error);
+                Torrents.search($scope.query.string, $scope.category).then(success, error);
             }
 
         };

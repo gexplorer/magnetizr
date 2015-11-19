@@ -227,12 +227,12 @@ angular.module('magnetizr.services', ['magnetizr.utils', 'xml'])
         var url = "https://kat.cr/usearch/{query}/?rss=1&field=" + orderBy + "&sorder=" + orderDir;
 
         return {
-            search: function (query) {
+            search: function (query, category) {
 
                 var success = function (response) {
                     torrents = [];
                     var torrentItems = response.data.rss.channel.item;
-                    if(!Array.isArray(torrentItems)){
+                    if (!Array.isArray(torrentItems)) {
                         torrentItems = [torrentItems];
                     }
                     for (var t in torrentItems) {
@@ -255,16 +255,18 @@ angular.module('magnetizr.services', ['magnetizr.utils', 'xml'])
                             leech: leech.people,
                             leechUnits: leech.units,
                             category: category,
-                            color: Utils.getColor(category),
-                            icon: Utils.getIcon(category),
                             imdb: ""
                         });
                     }
                     return torrents;
                 };
 
+                if (category) {
+                    query += ' category:' + category.toLowerCase();
+                }
+
                 var searchUrl = url.replace("{query}", encodeURIComponent(query));
-                return $http.get(searchUrl + query, {cache: false}).then(success);
+                return $http.get(searchUrl, {cache: false}).then(success);
             },
 
             get: function (torrentId) {

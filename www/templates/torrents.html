@@ -4,7 +4,8 @@
     </ion-nav-title>
 
     <ion-nav-buttons side="secondary">
-        <button class="button button-icon icon ion-funnel" ng-click="openFilter($event)"></button>
+        <button class="button icon ion-{{categoryIcon}} button-{{categoryColor}}"
+                ng-click="openFilter($event)"></button>
     </ion-nav-buttons>
 
     <ion-content>

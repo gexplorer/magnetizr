@@ -1,5 +1,42 @@
 <ion-popover-view>
     <ion-content>
-        Hello!
+        <div class="list">
+            <div class="item positive item-icon-left" ng-click="changeFilter('')">
+                <i class="icon ion-funnel stable"></i>
+                Anything
+            </div>
+            <div class="item positive item-icon-left" ng-click="changeFilter('TV')">
+                <i class="icon ion-{{categories['TV'].icon}} {{categories['TV'].color}}"></i>
+                TV
+            </div>
+            <div class="item positive item-icon-left" ng-click="changeFilter('Movies')">
+                <i class="icon ion-{{categories['Movies'].icon}} {{categories['Movies'].color}}"></i>
+                Movies
+            </div>
+            <div class="item positive item-icon-left" ng-click="changeFilter('Anime')">
+                <i class="icon ion-{{categories['Anime'].icon}} {{categories['Anime'].color}}"></i>
+                Anime
+            </div>
+            <div class="item positive item-icon-left" ng-click="changeFilter('Books')">
+                <i class="icon ion-{{categories['Books'].icon}} {{categories['Books'].color}}"></i>
+                Books
+            </div>
+            <div class="item positive item-icon-left" ng-click="changeFilter('Music')">
+                <i class="icon ion-{{categories['Music'].icon}} {{categories['Music'].color}}"></i>
+                Music
+            </div>
+            <div class="item positive item-icon-left" ng-click="changeFilter('Games')">
+                <i class="icon ion-{{categories['Games'].icon}} {{categories['Games'].color}}"></i>
+                Games
+            </div>
+            <div class="item positive item-icon-left" ng-click="changeFilter('Applications')">
+                <i class="icon ion-{{categories['Applications'].icon}} {{categories['Applications'].color}}"></i>
+                Applications
+            </div>
+            <div class="item positive item-icon-left" ng-click="changeFilter('XXX')">
+                <i class="icon ion-{{categories['XXX'].icon}} {{categories['XXX'].color}}"></i>
+                XXX
+            </div>
+        </div>
     </ion-content>
 </ion-popover-view>
