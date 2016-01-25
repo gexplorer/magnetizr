@@ -1,13 +1,11 @@
 {
   "name": "magnetizr",
   "private": "true",
-  "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.1"
-  },
   "dependencies": {
-    "angular-xml": "~2.1.0",
-    "angular-translate": "~2.7.2",
-    "angular-translate-loader-static-files": "~2.7.2",
-    "angular-cache": "~4.2.0"
+    "ionic": "~1.2.4",
+    "angular-xml": "~2.2.1",
+    "angular-translate": "~2.8.1",
+    "angular-translate-loader-static-files": "~2.8.1",
+    "angular-cache": "~4.4.3"
   }
 }
