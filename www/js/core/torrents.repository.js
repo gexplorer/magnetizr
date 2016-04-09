@@ -5,7 +5,7 @@
         .module('core')
         .factory('torrents', torrents);
 
-    function torrents($http, Utils) {
+    function torrents($http, utils) {
         var torrents = [];
         var orderBy = "seeders";
         var orderDir = "desc";
@@ -26,11 +26,11 @@
                 }
                 for (var t in torrentItems) {
                     var torrent = torrentItems[t];
-                    var size = Utils.getSizeWithUnits(torrent.contentLength.__text);
-                    var age = Utils.getAgeWithUnits(torrent.pubDate);
-                    var seed = Utils.getPeopleWithUnits(torrent.seeds.__text);
-                    var leech = Utils.getPeopleWithUnits(torrent.peers.__text);
-                    var category = Utils.categorize(torrent.category);
+                    var size = utils.getSizeWithUnits(torrent.contentLength.__text);
+                    var age = utils.getAgeWithUnits(torrent.pubDate);
+                    var seed = utils.getPeopleWithUnits(torrent.seeds.__text);
+                    var leech = utils.getPeopleWithUnits(torrent.peers.__text);
+                    var category = utils.categorize(torrent.category);
                     torrents.push({
                         id: torrent.infoHash.__text,
                         name: torrent.title,

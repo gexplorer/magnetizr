@@ -5,7 +5,7 @@
         .module('core')
         .factory('torrents', torrentsMock);
 
-    function torrentsMock(Utils) {
+    function torrentsMock(utils) {
         var torrents = [
             {
                 id: 0,
@@ -20,8 +20,8 @@
                 leech: 90,
                 leechUnits: "k",
                 category: "Movies",
-                color: Utils.getColor("Movies"),
-                icon: Utils.getIcon("Movies")
+                color: utils.getColor("Movies"),
+                icon: utils.getIcon("Movies")
             }, {
                 id: 1,
                 name: "Breaking Bad - Season 1",
@@ -35,8 +35,8 @@
                 leech: 87,
                 leechUnits: "k",
                 category: "TV",
-                color: Utils.getColor("TV"),
-                icon: Utils.getIcon("TV")
+                color: utils.getColor("TV"),
+                icon: utils.getIcon("TV")
             }, {
                 id: 2,
                 name: "The hitchhicker's guide to the galaxy",
@@ -50,8 +50,8 @@
                 leech: 82,
                 leechUnits: "k",
                 category: "Books",
-                color: Utils.getColor("Books"),
-                icon: Utils.getIcon("Books")
+                color: utils.getColor("Books"),
+                icon: utils.getIcon("Books")
             }, {
                 id: 3,
                 name: "Queen - Greatest Hits I & II",
@@ -65,8 +65,8 @@
                 leech: 75,
                 leechUnits: "k",
                 category: "Music",
-                color: Utils.getColor("Music"),
-                icon: Utils.getIcon("Music")
+                color: utils.getColor("Music"),
+                icon: utils.getIcon("Music")
             }, {
                 id: 4,
                 name: "Monkey Island",
@@ -80,8 +80,8 @@
                 leech: 62,
                 leechUnits: "k",
                 category: "Games",
-                color: Utils.getColor("Games"),
-                icon: Utils.getIcon("Games")
+                color: utils.getColor("Games"),
+                icon: utils.getIcon("Games")
             }, {
                 id: 5,
                 name: "Ubuntu 15.04",
@@ -95,8 +95,8 @@
                 leech: 64,
                 leechUnits: "k",
                 category: "Applications",
-                color: Utils.getColor("Applications"),
-                icon: Utils.getIcon("Applications")
+                color: utils.getColor("Applications"),
+                icon: utils.getIcon("Applications")
             }
 
         ];

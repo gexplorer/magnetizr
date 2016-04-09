@@ -5,7 +5,7 @@
         .module('core')
         .factory('torrents', torrentsStrike);
 
-    function torrentsStrike($http, Utils) {
+    function torrentsStrike($http, utils) {
 
         var torrents = [];
         var searchUrl = "https://getstrike.net/api/v2/torrents/search/?phrase=";
@@ -27,10 +27,10 @@
 
                     for (var i = 0; i < torrentItems.length; i++) {
                         var torrent = torrentItems[i];
-                        var size = Utils.getSizeWithUnits(torrent.size);
-                        var age = Utils.getAgeWithUnits(torrent.upload_date);
-                        var seed = Utils.getPeopleWithUnits(torrent.seeds);
-                        var leech = Utils.getPeopleWithUnits(torrent.leeches);
+                        var size = utils.getSizeWithUnits(torrent.size);
+                        var age = utils.getAgeWithUnits(torrent.upload_date);
+                        var seed = utils.getPeopleWithUnits(torrent.seeds);
+                        var leech = utils.getPeopleWithUnits(torrent.leeches);
                         torrents.push({
                             id: torrent.torrent_hash,
                             name: torrent.torrent_title,
@@ -44,8 +44,8 @@
                             leech: leech.people,
                             leechUnits: leech.units,
                             category: torrent.torrent_category,
-                            color: Utils.getColor(torrent.torrent_category),
-                            icon: Utils.getIcon(torrent.torrent_category),
+                            color: utils.getColor(torrent.torrent_category),
+                            icon: utils.getIcon(torrent.torrent_category),
                             imdb: torrent.imdbid
                         });
                     }

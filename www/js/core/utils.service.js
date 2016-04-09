@@ -1,6 +1,11 @@
-angular.module('magnetizr.utils', [])
+(function () {
+    'use strict';
 
-    .factory('Utils', function () {
+    angular
+        .module('core')
+        .factory('utils', utils);
+
+    function utils() {
         function getColor(category) {
             var color = "light";
             switch (category) {
@@ -166,7 +171,7 @@ angular.module('magnetizr.utils', [])
             return unitName;
         }
 
-        function categorize(longCategory){
+        function categorize(longCategory) {
             return longCategory.split(" ")[0];
         }
 
@@ -178,4 +183,5 @@ angular.module('magnetizr.utils', [])
             getAgeWithUnits: getAgeWithUnits,
             categorize: categorize
         }
-    });
+    }
+})();

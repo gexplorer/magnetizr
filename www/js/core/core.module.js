@@ -2,7 +2,5 @@
     'use strict';
 
     angular
-        .module('core', [
-            'magnetizr.utils'
-        ]);
+        .module('core', []);
 })();
