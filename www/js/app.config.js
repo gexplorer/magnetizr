@@ -5,7 +5,7 @@
         .module('magnetizr')
         .config(config);
 
-    function config($urlRouterProvider, $translateProvider) {
+    function config($urlRouterProvider, $translateProvider, $httpProvider) {
         $urlRouterProvider.otherwise('/torrents');
 
         $translateProvider.useSanitizeValueStrategy('escaped');
@@ -16,5 +16,7 @@
 
         $translateProvider.preferredLanguage("en");
         $translateProvider.fallbackLanguage("en");
+
+        $httpProvider.interceptors.push('xmlHttpInterceptor');
     }
 })();

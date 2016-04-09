@@ -3,6 +3,6 @@
 
     angular
         .module('torrentList', [
-            'ionic', 'magnetizr.services'
+            'ionic', 'core'
         ]);
 })();

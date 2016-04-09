@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('torrentDetail', [
-            'core'
+        .module('core', [
+            'magnetizr.utils'
         ]);
 })();

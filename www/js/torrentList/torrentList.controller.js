@@ -5,7 +5,7 @@
         .module('torrentList')
         .controller('TorrentListController', TorrentListController);
 
-    function TorrentListController($scope, Torrents, $ionicLoading, focus, $translate, $ionicPopover, Categories) {
+    function TorrentListController($scope, torrents, $ionicLoading, focus, $translate, $ionicPopover, categories) {
         $scope.torrents = [];
         $scope.form = {};
         $scope.message = "";
@@ -13,7 +13,7 @@
             string: ""
         };
 
-        $scope.categories = Categories.get();
+        $scope.categories = categories.get();
 
         $scope.category = '';
         $scope.categoryIcon = 'funnel';
@@ -94,7 +94,7 @@
                     $scope.torrents = [];
 
                 };
-                Torrents.search($scope.query.string, $scope.category).then(success, error);
+                torrents.search($scope.query.string, $scope.category).then(success, error);
             }
         };
     }

@@ -5,10 +5,10 @@
         .module('torrentDetail')
         .controller('TorrentDetailController', TorrentDetailController);
 
-    function TorrentDetailController($scope, $state, Torrents, $ionicHistory, $ionicLoading, $translate, Categories) {
-        $scope.torrent = Torrents.get($state.params.torrentId);
+    function TorrentDetailController($scope, $state, torrents, $ionicHistory, $ionicLoading, $translate, categories) {
+        $scope.torrent = torrents.get($state.params.torrentId);
 
-        $scope.categories = Categories.get();
+        $scope.categories = categories.get();
 
         $scope.goBack = function () {
             $ionicHistory.goBack();
