@@ -5,21 +5,7 @@
         .module('magnetizr')
         .config(config);
 
-    function config($stateProvider, $urlRouterProvider, $translateProvider) {
-        $stateProvider
-
-            .state('torrents', {
-                url: '/torrents',
-                templateUrl: 'templates/torrents.html',
-                controller: 'TorrentsCtrl'
-            })
-
-            .state('torrent-detail', {
-                url: '/torrents/:torrentId',
-                templateUrl: 'templates/torrent-detail.html',
-                controller: 'TorrentDetailCtrl'
-            });
-
+    function config($urlRouterProvider, $translateProvider) {
         $urlRouterProvider.otherwise('/torrents');
 
         $translateProvider.useSanitizeValueStrategy('escaped');

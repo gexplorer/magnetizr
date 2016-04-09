@@ -3,6 +3,6 @@
 
     angular
         .module('magnetizr', [
-            'ionic', 'magnetizr.controllers', 'magnetizr.directives', 'pascalprecht.translate', 'angular-cache'
+            'ionic', 'torrentList', 'torrentDetail', 'pascalprecht.translate', 'angular-cache'
         ]);
 })();
