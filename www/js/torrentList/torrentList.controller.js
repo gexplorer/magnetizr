@@ -21,20 +21,29 @@
 
         $scope.empty = true;
 
-        $ionicPopover.fromTemplateUrl('js/torrentList/filter.html', {
-            scope: $scope
-        }).then(function (popover) {
-            $scope.filter = popover;
-        });
+        $ionicPopover
+            .fromTemplateUrl('js/torrentList/filter.html', {scope: $scope})
+            .then(function (popover) {
+                $scope.filter = popover;
+            });
 
-        $scope.openFilter = function ($event) {
+        $scope.openFilter = openFilter;
+        $scope.closeFilter = closeFilter;
+        $scope.changeFilter = changeFilter;
+        $scope.get = get;
+        $scope.clearSearch = clearSearch;
+        $scope.clearResults = clearResults;
+        $scope.search = search;
+
+        function openFilter($event) {
             $scope.filter.show($event);
-        };
-        $scope.closeFilter = function () {
-            $scope.filter.hide();
-        };
+        }
 
-        $scope.changeFilter = function (category) {
+        function closeFilter() {
+            $scope.filter.hide();
+        }
+
+        function changeFilter(category) {
             $scope.category = category;
             if (category != '') {
                 $scope.categoryColor = $scope.categories[category].color;
@@ -47,24 +56,24 @@
                 $scope.search();
             }
             $scope.closeFilter();
-        };
+        }
 
-        $scope.get = function (torrent) {
+        function get(torrent) {
             cordova.InAppBrowser.open(torrent.magnet, '_system');
-        };
+        }
 
-        $scope.clearSearch = function () {
+        function clearSearch() {
             $scope.query.string = "";
             focus("search");
-        };
+        }
 
-        $scope.clearResults = function () {
+        function clearResults() {
             $scope.torrents = [];
             $scope.message = "";
             $scope.empty = true;
-        };
+        }
 
-        $scope.search = function () {
+        function search() {
             $scope.empty = false;
             document.activeElement.blur();
             $ionicLoading.show();
@@ -72,30 +81,33 @@
             if (navigator.connection && navigator.connection.type == Connection.NONE) {
                 $scope.message = $translate.instant("noConnection");
             } else {
-                var success = function (torrents) {
-                    $scope.message = "";
-                    $scope.torrents = torrents;
-                    $ionicLoading.hide();
-                };
-                var error = function (response) {
-                    switch (response.status) {
-                        case 404:
-                            if (response.data && response.data.message && response.data.message.includes("Your query must be at least 4")) {
-                                $scope.message = $translate.instant("lessThan4CharactersError");
-                            } else {
-                                $scope.message = $translate.instant("notFoundError");
-                            }
-                            break;
-                        default :
-                            $scope.message = $translate.instant("unknownError");
-                    }
-
-                    $ionicLoading.hide();
-                    $scope.torrents = [];
-
-                };
-                torrents.search($scope.query.string, $scope.category).then(success, error);
+                torrents
+                    .search($scope.query.string, $scope.category)
+                    .then(listTorrents, showErrorMessage);
             }
-        };
+        }
+
+        function listTorrents(torrents) {
+            $scope.message = "";
+            $scope.torrents = torrents;
+            $ionicLoading.hide();
+        }
+
+        function showErrorMessage(response) {
+            switch (response.status) {
+                case 404:
+                    if (response.data && response.data.message && response.data.message.includes("Your query must be at least 4")) {
+                        $scope.message = $translate.instant("lessThan4CharactersError");
+                    } else {
+                        $scope.message = $translate.instant("notFoundError");
+                    }
+                    break;
+                default :
+                    $scope.message = $translate.instant("unknownError");
+            }
+
+            $ionicLoading.hide();
+            $scope.torrents = [];
+        }
     }
 })();
